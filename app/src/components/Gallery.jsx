@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Camera, ChevronDown, ChevronUp } from 'lucide-react';
 
 const CATEGORIES = [
     { id: 'all', name: 'All' },
@@ -13,10 +13,13 @@ const CATEGORIES = [
 export default function Gallery({ photos }) {
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [selectedPhoto, setSelectedPhoto] = useState(null);
+    const [isExpanded, setIsExpanded] = useState(false);
 
     const filteredPhotos = selectedCategory === 'all'
         ? photos
         : photos.filter(p => p.category === selectedCategory);
+
+    const visiblePhotos = isExpanded ? filteredPhotos : filteredPhotos.slice(0, 8);
 
     const openLightbox = (photo) => {
         setSelectedPhoto(photo);
@@ -52,7 +55,10 @@ export default function Gallery({ photos }) {
                     {CATEGORIES.map((category) => (
                         <button
                             key={category.id}
-                            onClick={() => setSelectedCategory(category.id)}
+                            onClick={() => {
+                                setSelectedCategory(category.id);
+                                setIsExpanded(false);
+                            }}
                             className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === category.id
                                 ? 'bg-rose-500 text-white shadow-lg scale-105'
                                 : 'bg-white text-gray-600 hover:bg-rose-50 border border-gray-200'
@@ -69,7 +75,7 @@ export default function Gallery({ photos }) {
                     className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
                 >
                     <AnimatePresence>
-                        {filteredPhotos.map((photo) => (
+                        {visiblePhotos.map((photo) => (
                             <motion.div
                                 layout
                                 initial={{ opacity: 0, scale: 0.8 }}
@@ -92,6 +98,25 @@ export default function Gallery({ photos }) {
                         ))}
                     </AnimatePresence>
                 </motion.div>
+
+                {filteredPhotos.length > 8 && (
+                    <div className="mt-12 text-center">
+                        <button
+                            onClick={() => setIsExpanded(!isExpanded)}
+                            className="inline-flex items-center gap-2 px-8 py-3 bg-white border border-gray-200 rounded-full text-gray-600 font-medium hover:bg-rose-50 hover:text-rose-600 transition-all duration-300 shadow-sm hover:shadow"
+                        >
+                            {isExpanded ? (
+                                <>
+                                    Show Less <ChevronUp className="w-4 h-4" />
+                                </>
+                            ) : (
+                                <>
+                                    View More <ChevronDown className="w-4 h-4" />
+                                </>
+                            )}
+                        </button>
+                    </div>
+                )}
             </div>
 
             {/* Lightbox */}
