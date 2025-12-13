@@ -71,7 +71,7 @@ export default function Navbar() {
                     <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('#hero')}>
                         <Heart className={`w-6 h-6 ${isScrolled ? 'text-rose-500' : 'text-white'} fill-current`} viewBox="0 3 24 24" />
                         <span className={`font-script text-2xl ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
-                            Đ & T
+                            L & T
                         </span>
                     </div>
 
