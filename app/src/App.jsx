@@ -13,6 +13,8 @@ import RSVP from './components/RSVP';
 import Gift from './components/Gift';
 import MusicPlayer from './components/MusicPlayer';
 import Footer from './components/Footer';
+import GrainOverlay from './components/GrainOverlay';
+
 
 // Import optimized images
 const thumbValues = import.meta.glob('../images/thumbnails/*.JPG', { eager: true, import: 'default' });
@@ -103,6 +105,7 @@ function App() {
             <Gift />
             <Footer weddingDetails={WEDDING_DETAILS} />
             <MusicPlayer />
+            <GrainOverlay />
         </div>
     );
 }

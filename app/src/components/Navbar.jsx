@@ -9,7 +9,7 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 50);
+            setIsScrolled(window.scrollY > 20);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -28,7 +28,7 @@ export default function Navbar() {
     useEffect(() => {
         const observerOptions = {
             root: null,
-            rootMargin: '-50% 0px -50% 0px', // Trigger when section is in middle of viewport
+            rootMargin: '-40% 0px -60% 0px',
             threshold: 0
         };
 
@@ -63,14 +63,22 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white/80 backdrop-blur-md shadow-md py-2' : 'bg-transparent py-4'
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isScrolled
+                    ? 'bg-white/80 backdrop-blur-xl shadow-sm py-3'
+                    : 'bg-transparent py-6'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection('#hero')}>
-                        <Heart className={`w-6 h-6 ${isScrolled ? 'text-rose-500' : 'text-white'} fill-current`} viewBox="0 3 24 24" />
-                        <span className={`font-script text-2xl ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
+                    <div
+                        className="flex items-center gap-2 cursor-pointer group"
+                        onClick={() => scrollToSection('#hero')}
+                    >
+                        <Heart
+                            className={`w-6 h-6 transition-colors duration-300 ${isScrolled ? 'text-rose-500' : 'text-white'} fill-current group-hover:scale-110`}
+                            viewBox="0 3 24 24"
+                        />
+                        <span className={`font-script text-2xl transition-colors duration-300 ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
                             L & T
                         </span>
                     </div>
@@ -81,14 +89,14 @@ export default function Navbar() {
                             <button
                                 key={link.name}
                                 onClick={() => scrollToSection(link.href)}
-                                className={`text-sm font-medium transition-all duration-300 relative group
+                                className={`text-sm tracking-wide transition-all duration-300 relative group py-1
                                     ${activeSection === link.href.substring(1)
-                                        ? (isScrolled ? 'text-rose-500 font-semibold' : 'text-white font-semibold')
-                                        : (isScrolled ? 'text-gray-600 hover:text-rose-500' : 'text-white/90 hover:text-white')
+                                        ? (isScrolled ? 'text-rose-600 font-semibold' : 'text-white font-semibold')
+                                        : (isScrolled ? 'text-gray-600 hover:text-rose-500' : 'text-white/80 hover:text-white')
                                     }`}
                             >
                                 {link.name}
-                                <span className={`absolute -bottom-1 left-0 h-0.5 bg-current transition-all duration-300
+                                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-current transition-all duration-300 ease-out
                                     ${activeSection === link.href.substring(1) ? 'w-full' : 'w-0 group-hover:w-full'}`}
                                 ></span>
                             </button>
@@ -99,7 +107,7 @@ export default function Navbar() {
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className={`p-2 rounded-md ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+                            className={`p-2 rounded-md transition-colors ${isScrolled ? 'text-gray-800' : 'text-white'}`}
                         >
                             {isMobileMenuOpen ? <X /> : <Menu />}
                         </button>
@@ -114,7 +122,7 @@ export default function Navbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white border-t border-gray-100 overflow-hidden"
+                        className="md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 overflow-hidden"
                     >
                         <div className="px-4 py-4 space-y-2">
                             {navLinks.map((link) => (

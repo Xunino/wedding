@@ -1,8 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Music, Pause, Play } from 'lucide-react';
+import { Music, Pause, Play, Volume2, VolumeX } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function MusicPlayer() {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
     const audioRef = useRef(null);
 
     // Auto-play music when component mounts
@@ -27,18 +29,12 @@ export default function MusicPlayer() {
             } catch (error) {
                 console.log('Autoplay prevented. Waiting for valid user interaction.', error);
                 setIsPlaying(false);
-                // Reset flag to allow retry on next interaction
                 isAttemptingPlay = false;
-
-                // Note: We DO NOT remove listeners here. They stay active 
-                // until one of them successfully triggers play().
             }
         };
 
-        // Initial attempt
-        const timer = setTimeout(playAudio, 200);
+        const timer = setTimeout(playAudio, 1000);
 
-        // Add persistent listeners (removed locally in playAudio on success)
         interactionEvents.forEach(event =>
             document.addEventListener(event, playAudio, { capture: true })
         );
@@ -61,16 +57,43 @@ export default function MusicPlayer() {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className="fixed bottom-6 right-6 z-[100]">
             <audio ref={audioRef} loop src="/music/honcayeu.mp3" />
 
-            <button
+            <motion.button
+                layout
                 onClick={togglePlay}
-                className={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${isPlaying ? 'bg-rose-500 text-white animate-spin-slow' : 'bg-white text-gray-800 hover:bg-gray-50'
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
+                className={`flex items-center gap-3 pl-4 pr-2 py-2 rounded-full shadow-lg border border-white/20 transition-all duration-300 backdrop-blur-md ${isPlaying
+                        ? 'bg-rose-500/90 text-white shadow-rose-200/50'
+                        : 'bg-white/90 text-gray-800 hover:bg-white'
                     }`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
             >
-                {isPlaying ? <Pause className="w-5 h-5" /> : <Music className="w-5 h-5" />}
-            </button>
+                <div className="flex flex-col items-start mr-2">
+                    <span className="text-xs font-medium uppercase tracking-wider opacity-80">
+                        {isPlaying ? 'Playing' : 'Paused'}
+                    </span>
+                    <span className="text-xs font-bold whitespace-nowrap">
+                        Hơn Cả Yêu
+                    </span>
+                </div>
+
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${isPlaying ? 'bg-white text-rose-500' : 'bg-rose-100 text-rose-500'
+                    }`}>
+                    {isPlaying ? (
+                        <div className="flex gap-0.5 items-end h-4">
+                            <motion.div animate={{ height: [4, 12, 4] }} transition={{ repeat: Infinity, duration: 1 }} className="w-1 bg-current rounded-full" />
+                            <motion.div animate={{ height: [8, 16, 8] }} transition={{ repeat: Infinity, duration: 0.8 }} className="w-1 bg-current rounded-full" />
+                            <motion.div animate={{ height: [4, 10, 4] }} transition={{ repeat: Infinity, duration: 1.2 }} className="w-1 bg-current rounded-full" />
+                        </div>
+                    ) : (
+                        <Play className="w-4 h-4 ml-0.5" />
+                    )}
+                </div>
+            </motion.button>
         </div>
     );
 }

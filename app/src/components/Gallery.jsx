@@ -59,12 +59,15 @@ export default function Gallery({ photos }) {
                                 setSelectedCategory(category.id);
                                 setIsExpanded(false);
                             }}
-                            className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedCategory === category.id
-                                ? 'bg-rose-500 text-white shadow-lg scale-105'
-                                : 'bg-white text-gray-600 hover:bg-rose-50 border border-gray-200'
+                            className={`px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 relative overflow-hidden group ${selectedCategory === category.id
+                                ? 'bg-rose-500 text-white shadow-lg shadow-rose-200'
+                                : 'bg-white text-gray-600 hover:text-rose-600 border border-gray-200'
                                 }`}
                         >
-                            {category.name}
+                            <span className="relative z-10">{category.name}</span>
+                            {selectedCategory !== category.id && (
+                                <div className="absolute inset-0 bg-rose-50 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 z-0"></div>
+                            )}
                         </button>
                     ))}
                 </div>
@@ -74,15 +77,16 @@ export default function Gallery({ photos }) {
                     layout
                     className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
                 >
-                    <AnimatePresence>
+                    <AnimatePresence mode='popLayout'>
                         {visiblePhotos.map((photo) => (
                             <motion.div
                                 layout
-                                initial={{ opacity: 0, scale: 0.8 }}
+                                initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.8 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.3 }}
                                 key={photo.id}
-                                className="relative aspect-square group cursor-pointer overflow-hidden rounded-xl bg-gray-100"
+                                className="relative aspect-square group cursor-pointer overflow-hidden rounded-xl bg-gray-100 shadow-md hover:shadow-xl transition-shadow duration-300"
                                 onClick={() => openLightbox(photo)}
                             >
                                 <img
@@ -92,7 +96,10 @@ export default function Gallery({ photos }) {
                                     loading="lazy"
                                 />
                                 <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                    <Camera className="w-8 h-8 text-white" />
+                                    <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 text-center">
+                                        <Camera className="w-8 h-8 text-white mx-auto mb-2" />
+                                        <span className="text-white font-serif text-lg">{photo.title}</span>
+                                    </div>
                                 </div>
                             </motion.div>
                         ))}
@@ -103,7 +110,7 @@ export default function Gallery({ photos }) {
                     <div className="mt-12 text-center">
                         <button
                             onClick={() => setIsExpanded(!isExpanded)}
-                            className="inline-flex items-center gap-2 px-8 py-3 bg-white border border-gray-200 rounded-full text-gray-600 font-medium hover:bg-rose-50 hover:text-rose-600 transition-all duration-300 shadow-sm hover:shadow"
+                            className="inline-flex items-center gap-2 px-8 py-3 bg-white border border-gray-200 rounded-full text-gray-600 font-medium hover:bg-rose-50 hover:text-rose-600 transition-all duration-300 shadow-sm hover:shadow-lg"
                         >
                             {isExpanded ? (
                                 <>
@@ -126,40 +133,43 @@ export default function Gallery({ photos }) {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm p-4"
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-4"
                     >
                         <button
                             onClick={closeLightbox}
-                            className="absolute top-6 right-6 p-2 text-white/70 hover:text-white transition-colors"
+                            className="absolute top-6 right-6 p-2 text-white/70 hover:text-white transition-colors bg-white/10 rounded-full hover:bg-white/20"
                         >
                             <X className="w-8 h-8" />
                         </button>
 
                         <button
                             onClick={(e) => { e.stopPropagation(); navigatePhoto('prev'); }}
-                            className="absolute left-4 p-2 text-white/70 hover:text-white transition-colors"
+                            className="absolute left-4 p-4 text-white/70 hover:text-white transition-colors hover:scale-110"
                         >
-                            <ChevronLeft className="w-8 h-8" />
+                            <ChevronLeft className="w-10 h-10" />
                         </button>
 
                         <button
                             onClick={(e) => { e.stopPropagation(); navigatePhoto('next'); }}
-                            className="absolute right-4 p-2 text-white/70 hover:text-white transition-colors"
+                            className="absolute right-4 p-4 text-white/70 hover:text-white transition-colors hover:scale-110"
                         >
-                            <ChevronRight className="w-8 h-8" />
+                            <ChevronRight className="w-10 h-10" />
                         </button>
 
-                        <div className="max-w-5xl max-h-[85vh] relative">
+                        <motion.div
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            className="max-w-6xl max-h-[90vh] relative"
+                        >
                             <img
                                 src={selectedPhoto.full}
                                 alt={selectedPhoto.title}
-                                className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl"
+                                className="max-w-full max-h-[85vh] object-contain rounded-sm shadow-2xl"
                             />
-                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-lg text-white">
-                                <h3 className="text-xl font-serif">{selectedPhoto.title}</h3>
-                                <p className="text-sm opacity-80 capitalize">{selectedPhoto.category}</p>
+                            <div className="absolute -bottom-10 left-0 right-0 text-center text-white">
+                                <h3 className="text-2xl font-serif tracking-wide">{selectedPhoto.title}</h3>
                             </div>
-                        </div>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>

@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Heart, Calendar, MapPin, Clock } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Heart, Calendar, MapPin } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero({ weddingDetails }) {
     const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-    const [scrollY, setScrollY] = useState(0);
+    const { scrollY } = useScroll();
+    const y1 = useTransform(scrollY, [0, 500], [0, 200]);
+    const opacity = useTransform(scrollY, [0, 300], [1, 0]);
 
     useEffect(() => {
         const calculateCountdown = () => {
@@ -26,63 +28,73 @@ export default function Hero({ weddingDetails }) {
         return () => clearInterval(timer);
     }, [weddingDetails.weddingDate]);
 
-    useEffect(() => {
-        const handleScroll = () => setScrollY(window.scrollY);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <section id="hero" className="relative h-screen overflow-hidden">
             {/* Background Image with Parallax */}
-            <div
+            <motion.div
                 className="absolute inset-0 bg-cover bg-center"
                 style={{
                     backgroundImage: `url(${weddingDetails.heroImage})`,
-                    transform: `translateY(${scrollY * 0.5}px)`,
+                    y: y1,
                 }}
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/60" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60" />
 
             {/* Content */}
-            <div className="relative h-full flex flex-col items-center justify-center text-white px-4 text-center">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-6"
-                >
-                    <Heart className="w-16 h-16 mx-auto text-rose-400 fill-rose-400/50 animate-pulse" />
-                </motion.div>
+            <motion.div
+                style={{ opacity }}
+                className="relative h-full flex flex-col items-center justify-center text-white px-4 text-center"
+            >
+                <div className="space-y-8">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1, ease: "easeOut" }}
+                        className="mb-8"
+                    >
+                        <Heart className="w-16 h-16 mx-auto text-rose-400 fill-rose-400/50 animate-pulse drop-shadow-lg" />
+                    </motion.div>
 
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1, delay: 0.2 }}
-                >
-                    <h1 className="text-5xl md:text-7xl lg:text-9xl font-script mb-2 drop-shadow-lg">
-                        {weddingDetails.groomName}
-                    </h1>
-                    <div className="flex items-center justify-center gap-6 my-4">
-                        <div className="h-px w-12 md:w-24 bg-rose-200/80"></div>
-                        <span className="text-3xl md:text-5xl font-serif italic text-rose-200">&</span>
-                        <div className="h-px w-12 md:w-24 bg-rose-200/80"></div>
+                    <div className="space-y-4">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+                            className="text-6xl md:text-8xl lg:text-9xl font-script drop-shadow-xl"
+                        >
+                            {weddingDetails.groomName}
+                        </motion.h1>
+
+                        <motion.div
+                            initial={{ opacity: 0, scaleX: 0 }}
+                            animate={{ opacity: 1, scaleX: 1 }}
+                            transition={{ duration: 1, delay: 0.6 }}
+                            className="flex items-center justify-center gap-6 my-4"
+                        >
+                            <div className="h-px w-16 md:w-32 bg-gradient-to-r from-transparent via-rose-200 to-transparent"></div>
+                            <span className="text-4xl md:text-5xl font-serif italic text-rose-200">&</span>
+                            <div className="h-px w-16 md:w-32 bg-gradient-to-r from-transparent via-rose-200 to-transparent"></div>
+                        </motion.div>
+
+                        <motion.h1
+                            initial={{ opacity: 0, y: -50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
+                            className="text-6xl md:text-8xl lg:text-9xl font-script drop-shadow-xl"
+                        >
+                            {weddingDetails.brideName}
+                        </motion.h1>
                     </div>
-                    <h1 className="text-5xl md:text-7xl lg:text-9xl font-script mb-8 drop-shadow-lg">
-                        {weddingDetails.brideName}
-                    </h1>
-                </motion.div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                    className="space-y-4 mb-12"
-                >
-                    <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-lg md:text-xl font-light tracking-wide">
-                        <div className="flex items-center gap-2">
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 1, delay: 1.2 }}
+                        className="flex flex-col md:flex-row items-center justify-center gap-6 text-lg md:text-xl font-light tracking-wide uppercase mt-8"
+                    >
+                        <div className="flex items-center gap-2 bg-black/20 backdrop-blur-sm px-6 py-2 rounded-full border border-white/10">
                             <Calendar className="w-5 h-5 text-rose-300" />
                             <span>
                                 {weddingDetails.weddingDate.toLocaleDateString('en-US', {
@@ -93,48 +105,49 @@ export default function Hero({ weddingDetails }) {
                                 })}
                             </span>
                         </div>
-                        <div className="hidden md:block w-1.5 h-1.5 rounded-full bg-rose-300" />
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 bg-black/20 backdrop-blur-sm px-6 py-2 rounded-full border border-white/10">
                             <MapPin className="w-5 h-5 text-rose-300" />
-                            <span>{weddingDetails.venue}, {weddingDetails.location}</span>
+                            <span>{weddingDetails.location}</span>
                         </div>
-                    </div>
-                </motion.div>
+                    </motion.div>
+                </div>
 
                 {/* Countdown */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                    className="flex flex-wrap justify-center gap-4 md:gap-8"
+                    transition={{ duration: 0.8, delay: 1.5 }}
+                    className="absolute bottom-32 w-full px-4"
                 >
-                    {[
-                        { label: 'Days', value: countdown.days },
-                        { label: 'Hours', value: countdown.hours },
-                        { label: 'Minutes', value: countdown.minutes },
-                        { label: 'Seconds', value: countdown.seconds },
-                    ].map((item, index) => (
-                        <div key={index} className="text-center">
-                            <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl p-3 md:p-4 min-w-[80px] md:min-w-[100px]">
-                                <span className="text-3xl md:text-4xl font-bold font-serif">{item.value.toString().padStart(2, '0')}</span>
+                    <div className="flex flex-wrap justify-center gap-4 md:gap-8 bg-black/10 backdrop-blur-md py-6 px-10 rounded-2xl border border-white/10 mx-auto max-w-4xl">
+                        {[
+                            { label: 'Days', value: countdown.days },
+                            { label: 'Hours', value: countdown.hours },
+                            { label: 'Minutes', value: countdown.minutes },
+                            { label: 'Seconds', value: countdown.seconds },
+                        ].map((item, index) => (
+                            <div key={index} className="text-center min-w-[70px] md:min-w-[90px]">
+                                <div className="text-3xl md:text-5xl font-bold font-serif mb-1 tabular-nums">
+                                    {item.value.toString().padStart(2, '0')}
+                                </div>
+                                <span className="text-xs md:text-sm uppercase tracking-[0.2em] text-rose-200/80">{item.label}</span>
                             </div>
-                            <span className="text-xs md:text-sm uppercase tracking-widest mt-2 block text-rose-200">{item.label}</span>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </motion.div>
-            </div>
+            </motion.div>
 
             {/* Scroll Indicator */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.5, duration: 1 }}
+                transition={{ delay: 2, duration: 1 }}
                 className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
             >
-                <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center p-1">
+                <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1 backdrop-blur-sm">
                     <motion.div
                         animate={{ y: [0, 12, 0] }}
-                        transition={{ repeat: Infinity, duration: 1.5 }}
+                        transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
                         className="w-1.5 h-1.5 bg-white rounded-full"
                     />
                 </div>
