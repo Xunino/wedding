@@ -137,23 +137,23 @@ export default function Gallery({ photos }) {
                     >
                         <button
                             onClick={closeLightbox}
-                            className="absolute top-6 right-6 p-2 text-white/70 hover:text-white transition-colors bg-white/10 rounded-full hover:bg-white/20"
+                            className="absolute top-4 right-4 md:top-6 md:right-6 p-2 text-white/70 hover:text-white transition-colors bg-white/10 rounded-full hover:bg-white/20 z-50"
                         >
-                            <X className="w-8 h-8" />
+                            <X className="w-6 h-6 md:w-8 md:h-8" />
                         </button>
 
                         <button
                             onClick={(e) => { e.stopPropagation(); navigatePhoto('prev'); }}
-                            className="absolute left-4 p-4 text-white/70 hover:text-white transition-colors hover:scale-110"
+                            className="absolute left-2 md:left-4 p-2 md:p-4 text-white/70 hover:text-white transition-colors hover:scale-110 z-50"
                         >
-                            <ChevronLeft className="w-10 h-10" />
+                            <ChevronLeft className="w-8 h-8 md:w-10 md:h-10" />
                         </button>
 
                         <button
                             onClick={(e) => { e.stopPropagation(); navigatePhoto('next'); }}
-                            className="absolute right-4 p-4 text-white/70 hover:text-white transition-colors hover:scale-110"
+                            className="absolute right-2 md:right-4 p-2 md:p-4 text-white/70 hover:text-white transition-colors hover:scale-110 z-50"
                         >
-                            <ChevronRight className="w-10 h-10" />
+                            <ChevronRight className="w-8 h-8 md:w-10 md:h-10" />
                         </button>
 
                         <motion.div

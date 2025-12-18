@@ -104,12 +104,12 @@ export default function Couple({ weddingDetails }) {
                         viewport={{ once: true }}
                         className="relative z-10"
                     >
-                        <span className="text-rose-500 font-medium tracking-[0.2em] uppercase text-sm mb-4 block">The Happy Couple</span>
-                        <h2 className="text-5xl md:text-7xl font-serif text-gray-800 mb-6">Groom & Bride</h2>
+                        <span className="text-rose-500 font-medium tracking-[0.2em] uppercase text-xs md:text-sm mb-4 block">The Happy Couple</span>
+                        <h2 className="text-4xl md:text-7xl font-serif text-gray-800 mb-6">Groom & Bride</h2>
                         <div className="flex justify-center items-center gap-4">
-                            <div className="h-px w-12 bg-rose-200" />
-                            <Heart className="w-6 h-6 text-rose-400 fill-rose-400 animate-pulse" />
-                            <div className="h-px w-12 bg-rose-200" />
+                            <div className="h-px w-8 md:w-12 bg-rose-200" />
+                            <Heart className="w-5 h-5 md:w-6 md:h-6 text-rose-400 fill-rose-400 animate-pulse" />
+                            <div className="h-px w-8 md:w-12 bg-rose-200" />
                         </div>
                     </motion.div>
 

@@ -64,8 +64,8 @@ export default function Navbar() {
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isScrolled
-                    ? 'bg-white/80 backdrop-blur-xl shadow-sm py-3'
-                    : 'bg-transparent py-6'
+                ? 'bg-white/80 backdrop-blur-xl shadow-sm py-3'
+                : 'bg-transparent py-6'
                 }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,16 +122,16 @@ export default function Navbar() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 overflow-hidden"
+                        className="md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 overflow-hidden shadow-2xl"
                     >
                         <div className="px-4 py-4 space-y-2">
                             {navLinks.map((link) => (
                                 <button
                                     key={link.name}
                                     onClick={() => scrollToSection(link.href)}
-                                    className={`block w-full text-left px-4 py-3 rounded-lg transition-colors
+                                    className={`block w-full text-left px-4 py-3 rounded-lg transition-colors text-base font-medium active:scale-95 transform duration-200
                                         ${activeSection === link.href.substring(1)
-                                            ? 'bg-rose-50 text-rose-600 font-medium'
+                                            ? 'bg-rose-50 text-rose-600'
                                             : 'text-gray-600 hover:bg-rose-50 hover:text-rose-600'
                                         }`}
                                 >

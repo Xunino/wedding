@@ -75,11 +75,11 @@ export default function Timeline() {
 
                 <div className="relative min-h-[600px] z-10">
                     {/* Vertical Line */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-px">
+                    <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 h-full w-px">
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-rose-300 to-transparent opacity-60" />
                     </div>
 
-                    <div className="space-y-16">
+                    <div className="space-y-12 md:space-y-16">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeTab}
@@ -87,7 +87,7 @@ export default function Timeline() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.5 }}
-                                className="space-y-16"
+                                className="space-y-12 md:space-y-16"
                             >
                                 {events.map((event, index) => {
                                     const Icon = event.icon;
@@ -100,15 +100,15 @@ export default function Timeline() {
                                             whileInView={{ opacity: 1, y: 0 }}
                                             viewport={{ once: true, margin: "-50px" }}
                                             transition={{ duration: 0.7, delay: index * 0.1, type: "spring", bounce: 0.4 }}
-                                            className={`relative flex items-center justify-between ${isEven ? 'flex-row' : 'flex-row-reverse'
+                                            className={`relative flex md:items-center md:justify-between ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'
                                                 }`}
                                         >
                                             {/* Content Card */}
-                                            <div className={`w-5/12 ${isEven ? 'text-right pr-12' : 'text-left pl-12'}`}>
+                                            <div className={`w-full md:w-5/12 pl-16 md:pl-0 ${isEven ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'}`}>
                                                 <div className="group relative">
-                                                    <div className={`absolute top-0 ${isEven ? '-right-2' : '-left-2'} w-2 h-full bg-rose-500/0 group-hover:bg-rose-500/10 transition-colors duration-300 rounded${isEven ? '-l' : '-r'}-lg`} />
+                                                    <div className={`hidden md:block absolute top-0 ${isEven ? '-right-2' : '-left-2'} w-2 h-full bg-rose-500/0 group-hover:bg-rose-500/10 transition-colors duration-300 rounded${isEven ? '-l' : '-r'}-lg`} />
 
-                                                    <div className={`inline-flex items-center gap-2 text-rose-500 font-semibold mb-2 ${isEven ? 'flex-row-reverse' : 'flex-row'
+                                                    <div className={`inline-flex items-center gap-2 text-rose-500 font-semibold mb-2 ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'
                                                         }`}>
                                                         <div className="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 flex items-center gap-2 shadow-sm">
                                                             <Clock className="w-3.5 h-3.5" />
@@ -116,17 +116,18 @@ export default function Timeline() {
                                                         </div>
                                                     </div>
 
-                                                    <h3 className="text-2xl font-serif text-gray-800 mb-2 group-hover:text-rose-600 transition-colors duration-300">
+                                                    <h3 className="text-xl md:text-2xl font-serif text-gray-800 mb-2 group-hover:text-rose-600 transition-colors duration-300">
                                                         {event.title}
                                                     </h3>
-                                                    <p className="text-gray-500 font-light leading-relaxed">
+                                                    <p className="text-gray-500 font-light leading-relaxed text-sm md:text-base">
                                                         {event.description}
                                                     </p>
                                                 </div>
                                             </div>
 
-                                            {/* Center Icon */}
-                                            <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center">
+                                            {/* Center Icon (Desktop) / Left Line Icon (Mobile) */}
+                                            <div className="absolute left-8 top-0 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center h-full md:h-auto">
+                                                {/* Desktop Icon */}
                                                 <div className="relative w-14 h-14 hidden md:flex items-center justify-center">
                                                     <motion.div
                                                         animate={{ scale: [1, 1.2, 1] }}
@@ -138,12 +139,14 @@ export default function Timeline() {
                                                     </div>
                                                 </div>
 
-                                                {/* Mobile Dot */}
-                                                <div className="md:hidden w-4 h-4 bg-white border-2 border-rose-400 rounded-full z-10 shadow-md transform -translate-y-1/2"></div>
+                                                {/* Mobile Dot/Icon */}
+                                                <div className="md:hidden absolute top-0 w-10 h-10 bg-white border-2 border-rose-400 rounded-full z-10 shadow-md flex items-center justify-center">
+                                                    <Icon className="w-5 h-5 text-rose-500" />
+                                                </div>
                                             </div>
 
-                                            {/* Empty Space */}
-                                            <div className="w-5/12" />
+                                            {/* Empty Space - Hidden on Mobile */}
+                                            <div className="hidden md:block w-5/12" />
                                         </motion.div>
                                     );
                                 })}

@@ -72,7 +72,7 @@ export default function MusicPlayer() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >
-                <div className="flex flex-col items-start mr-2">
+                <div className="hidden md:flex flex-col items-start mr-2">
                     <span className="text-xs font-medium uppercase tracking-wider opacity-80">
                         {isPlaying ? 'Playing' : 'Paused'}
                     </span>
