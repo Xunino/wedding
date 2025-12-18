@@ -36,6 +36,7 @@ export default function Hero({ weddingDetails }) {
                 style={{
                     backgroundImage: `url(${weddingDetails.heroImage})`,
                     y: y1,
+                    willChange: "transform"
                 }}
             />
 
@@ -45,24 +46,24 @@ export default function Hero({ weddingDetails }) {
             {/* Content */}
             <motion.div
                 style={{ opacity }}
-                className="relative h-full flex flex-col items-center justify-center text-white px-4 text-center"
+                className="relative h-full flex flex-col items-center justify-center text-white px-4 text-center pb-32 md:pb-40 lg:pb-48"
             >
-                <div className="space-y-4 md:space-y-8 w-full max-w-4xl">
+                <div className="space-y-4 md:space-y-6 w-full max-w-4xl relative z-20">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, ease: "easeOut" }}
-                        className="mb-4 md:mb-8"
+                        className="mb-4 md:mb-6"
                     >
                         <Heart className="w-12 h-12 md:w-16 md:h-16 mx-auto text-rose-400 fill-rose-400/50 animate-pulse drop-shadow-lg" />
                     </motion.div>
 
-                    <div className="space-y-2 md:space-y-4">
+                    <div className="space-y-2 md:space-y-3">
                         <motion.h1
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-                            className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-script drop-shadow-xl"
+                            className="text-5xl sm:text-6xl md:text-6xl lg:text-7xl font-script drop-shadow-xl leading-tight"
                         >
                             {weddingDetails.groomName}
                         </motion.h1>
@@ -71,7 +72,7 @@ export default function Hero({ weddingDetails }) {
                             initial={{ opacity: 0, scaleX: 0 }}
                             animate={{ opacity: 1, scaleX: 1 }}
                             transition={{ duration: 1, delay: 0.6 }}
-                            className="flex items-center justify-center gap-4 md:gap-6 my-2 md:my-4"
+                            className="flex items-center justify-center gap-4 md:gap-6 my-4 md:my-5"
                         >
                             <div className="h-px w-10 md:w-32 bg-gradient-to-r from-transparent via-rose-200 to-transparent"></div>
                             <span className="text-3xl md:text-5xl font-serif italic text-rose-200">&</span>
@@ -82,7 +83,7 @@ export default function Hero({ weddingDetails }) {
                             initial={{ opacity: 0, y: -50 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
-                            className="text-5xl sm:text-6xl md:text-8xl lg:text-9xl font-script drop-shadow-xl"
+                            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-script drop-shadow-xl leading-tight"
                         >
                             {weddingDetails.brideName}
                         </motion.h1>
@@ -117,7 +118,7 @@ export default function Hero({ weddingDetails }) {
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 1.5 }}
-                    className="absolute bottom-24 md:bottom-32 w-full px-4"
+                    className="absolute bottom-24 md:bottom-20 w-full px-4 z-20"
                 >
                     <div className="flex flex-wrap justify-center gap-3 md:gap-8 bg-black/10 backdrop-blur-md py-4 md:py-6 px-4 md:px-10 rounded-2xl border border-white/10 mx-auto max-w-[90%] md:max-w-4xl shadow-2xl">
                         {[

@@ -13,13 +13,13 @@ const INITIAL_WISHES = [
 ];
 
 const FloatingParticles = () => {
-    // Generate random particles (increased count and speed)
-    const particles = Array.from({ length: 15 }).map((_, i) => ({
+    // Generate random particles (reduced count for mobile performance)
+    const particles = Array.from({ length: 12 }).map((_, i) => ({
         id: i,
-        size: Math.random() * 40 + 10, // 10-50px (smaller but more)
-        x: Math.random() * 100,
-        duration: Math.random() * 8 + 30, // 5-13s (faster)
-        delay: Math.random() * 2
+        size: Math.random() * 30 + 10, // Slightly smaller
+        initialX: Math.random() * 100,
+        duration: Math.random() * 10 + 20, // Slower, smoother
+        delay: Math.random() * 5
     }));
 
     return (
@@ -31,31 +31,32 @@ const FloatingParticles = () => {
                     style={{
                         width: p.size,
                         height: p.size,
-                        left: `${p.x}%`,
-                        top: '110%',
+                        left: `${p.initialX}%`,
+                        top: '110%', // Start below screen
+                        willChange: 'transform, opacity',
                     }}
                     animate={{
-                        top: '-10%',
-                        x: ['-10px', '10px', '-10px'],
+                        y: '-120vh', // Move up using transform
+                        x: ['-20px', '20px', '-20px'], // Horizontal drift
                         opacity: [0, 0.6, 0],
                         scale: [0.8, 1.2, 0.8]
                     }}
                     transition={{
-                        top: {
+                        y: {
                             duration: p.duration,
                             repeat: Infinity,
                             ease: "linear",
                             delay: p.delay
                         },
                         x: {
-                            duration: 3,
+                            duration: 5,
                             repeat: Infinity,
                             ease: "easeInOut"
                         },
                         opacity: {
                             duration: p.duration,
                             repeat: Infinity,
-                            times: [0, 0.5, 1],
+                            times: [0, 0.2, 0.9],
                             ease: "linear",
                             delay: p.delay
                         },
@@ -73,12 +74,12 @@ const FloatingParticles = () => {
 
 // New Sparkle Effect
 const Sparkles = () => {
-    const sparkles = Array.from({ length: 20 }).map((_, i) => ({
+    const sparkles = Array.from({ length: 15 }).map((_, i) => ({
         id: i,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
+        initialX: Math.random() * 100,
+        initialY: Math.random() * 100,
         size: Math.random() * 2 + 1,
-        duration: Math.random() * 2 + 1,
+        duration: Math.random() * 2 + 2,
         delay: Math.random() * 2
     }));
 
@@ -91,8 +92,9 @@ const Sparkles = () => {
                     style={{
                         width: s.size,
                         height: s.size,
-                        left: `${s.x}%`,
-                        top: `${s.y}%`,
+                        left: `${s.initialX}%`,
+                        top: `${s.initialY}%`,
+                        willChange: 'transform, opacity'
                     }}
                     animate={{
                         opacity: [0, 1, 0],
