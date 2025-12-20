@@ -53,25 +53,25 @@ const WEDDING_DETAILS = {
     venue: 'Hoa Lư & Kim Sơn',
     location: 'Ninh Bình, Việt Nam',
     heroImage: getImage('HERO9942.JPG'), // Fallback to first image if specific one not found
+    heroImageMobile: getImage('HERO0512.JPG'),
 };
 
-const WEDDING_PHOTOS = [
-    { id: 1, thumb: galleryThumbs[0 % galleryThumbs.length], full: galleryLarge[0 % galleryLarge.length], category: 'ceremony', title: 'The Ceremony' },
-    { id: 2, thumb: galleryThumbs[1 % galleryThumbs.length], full: galleryLarge[1 % galleryLarge.length], category: 'couple', title: 'First Look' },
-    { id: 3, thumb: galleryThumbs[2 % galleryThumbs.length], full: galleryLarge[2 % galleryLarge.length], category: 'reception', title: 'Reception Hall' },
-    { id: 4, thumb: galleryThumbs[3 % galleryThumbs.length], full: galleryLarge[3 % galleryLarge.length], category: 'couple', title: 'Love Story' },
-    { id: 5, thumb: galleryThumbs[4 % galleryThumbs.length], full: galleryLarge[4 % galleryLarge.length], category: 'ceremony', title: 'The Vows' },
-    { id: 6, thumb: galleryThumbs[5 % galleryThumbs.length], full: galleryLarge[5 % galleryLarge.length], category: 'reception', title: 'First Dance' },
-    { id: 7, thumb: galleryThumbs[6 % galleryThumbs.length], full: galleryLarge[6 % galleryLarge.length], category: 'details', title: 'Wedding Rings' },
-    { id: 8, thumb: galleryThumbs[7 % galleryThumbs.length], full: galleryLarge[7 % galleryLarge.length], category: 'couple', title: 'Golden Hour' },
-    { id: 9, thumb: galleryThumbs[8 % galleryThumbs.length], full: galleryLarge[8 % galleryLarge.length], category: 'ceremony', title: 'Walking Down Aisle' },
-    { id: 10, thumb: galleryThumbs[9 % galleryThumbs.length], full: galleryLarge[9 % galleryLarge.length], category: 'reception', title: 'Celebration' },
-    { id: 11, thumb: galleryThumbs[10 % galleryThumbs.length], full: galleryLarge[10 % galleryLarge.length], category: 'details', title: 'Bouquet' },
-    { id: 12, thumb: galleryThumbs[11 % galleryThumbs.length], full: galleryLarge[11 % galleryLarge.length], category: 'couple', title: 'Sunset Romance' },
-    { id: 13, thumb: galleryThumbs[12 % galleryThumbs.length], full: galleryLarge[12 % galleryLarge.length], category: 'ceremony', title: 'The Kiss' },
-    { id: 14, thumb: galleryThumbs[13 % galleryThumbs.length], full: galleryLarge[13 % galleryLarge.length], category: 'reception', title: 'Party Time' },
-    { id: 15, thumb: galleryThumbs[14 % galleryThumbs.length], full: galleryLarge[14 % galleryLarge.length], category: 'details', title: 'Table Setting' },
-];
+const WEDDING_PHOTOS = Object.entries(largeValues).map(([path, full], index) => {
+    const fileName = path.split('/').pop();
+    const thumbPath = Object.keys(thumbValues).find(p => p.endsWith(fileName));
+
+    // Assign categories in rotation for variety
+    const categories = ['couple', 'ceremony', 'reception', 'details'];
+    const category = categories[index % categories.length];
+
+    return {
+        id: index + 1,
+        thumb: thumbValues[thumbPath] || galleryThumbs[index % galleryThumbs.length],
+        full: full,
+        category: category,
+        title: `Wedding Moment ${index + 1}`
+    };
+});
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);

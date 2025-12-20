@@ -16,16 +16,16 @@ const CoupleProfile = ({ fatherName, motherName, address, name, role, image, des
     const isLeft = align === 'left';
 
     return (
-        <div className={`flex flex-col ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-12 md:gap-24`}>
+        <div className={`flex flex-col ${isLeft ? 'md:flex-row' : 'md:flex-row-reverse'} items-center gap-8 md:gap-24`}>
             {/* Image Section */}
             <motion.div
                 initial={{ opacity: 0, x: isLeft ? -100 : 100, rotate: isLeft ? -5 : 5 }}
                 whileInView={{ opacity: 1, x: 0, rotate: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-                className="relative group w-full max-w-sm md:w-1/2"
+                className="relative group w-full max-w-[280px] sm:max-w-sm md:w-1/2"
             >
-                <div className="relative aspect-[3/4] overflow-hidden rounded-[2rem] shadow-2xl">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-[1.5rem] md:rounded-[2rem] shadow-2xl">
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
                     <img
                         src={image}
@@ -35,7 +35,7 @@ const CoupleProfile = ({ fatherName, motherName, address, name, role, image, des
                     />
 
                     {/* Decorative Frame */}
-                    <div className="absolute inset-4 border border-white/30 rounded-[1.5rem] z-20 pointer-events-none" />
+                    <div className="absolute inset-3 md:inset-4 border border-white/30 rounded-[1rem] md:rounded-[1.5rem] z-20 pointer-events-none" />
                 </div>
 
                 {/* Floating Role Badge */}
@@ -43,47 +43,47 @@ const CoupleProfile = ({ fatherName, motherName, address, name, role, image, des
                     initial={{ y: 20, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className={`absolute -bottom-6 ${isLeft ? 'right-6' : 'left-6'} bg-white px-8 py-3 rounded-full shadow-xl border border-rose-100 z-30`}
+                    className={`absolute -bottom-4 md:-bottom-6 ${isLeft ? 'right-4 md:right-6' : 'left-4 md:left-6'} bg-white px-6 md:px-8 py-2 md:py-3 rounded-full shadow-xl border border-rose-100 z-30`}
                 >
-                    <span className="font-serif italic text-2xl text-rose-600">{role}</span>
+                    <span className="font-serif italic text-xl md:text-2xl text-rose-600">{role}</span>
                 </motion.div>
 
                 {/* Background Decoration */}
-                <div className={`absolute -z-10 top-10 ${isLeft ? '-left-10' : '-right-10'} w-full h-full border-2 border-rose-200/60 rounded-[2rem]`} />
+                <div className={`absolute -z-10 top-6 md:top-10 ${isLeft ? '-left-6 md:-left-10' : '-right-6 md:-right-10'} w-full h-full border-2 border-rose-200/60 rounded-[1.5rem] md:rounded-[2rem]`} />
             </motion.div>
 
             {/* Content Section */}
-            <div className={`w-full md:w-1/2 text-center ${isLeft ? 'md:text-left' : 'md:text-right'}`}>
+            <div className={`w-full md:w-1/2 text-center ${isLeft ? 'md:text-left' : 'md:text-right'} mt-4 md:mt-0`}>
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                    <h3 className="text-5xl md:text-6xl font-script text-gray-800 mb-6">{name}</h3>
+                    <h3 className="text-4xl md:text-6xl font-script text-gray-800 mb-4 md:mb-6">{name}</h3>
 
-                    <div className={`flex flex-col gap-2 ${isLeft ? 'items-center md:items-start' : 'items-center md:items-end'} mb-8`}>
-                        <div className="h-1 w-20 bg-rose-300 rounded-full" />
+                    <div className={`flex flex-col gap-2 ${isLeft ? 'items-center md:items-start' : 'items-center md:items-end'} mb-4 md:mb-8`}>
+                        <div className="h-1 w-16 md:w-20 bg-rose-300 rounded-full" />
                     </div>
 
-                    <p className="text-gray-600 leading-loose mb-8 font-light text-lg">
+                    <p className="text-gray-600 leading-relaxed md:leading-loose mb-6 md:mb-8 font-light text-base md:text-lg px-2 md:px-0">
                         {description}
                     </p>
 
-                    <div className={`space-y-4 ${isLeft ? 'items-center md:items-start' : 'items-center md:items-end'} flex flex-col`}>
-                        <div className="flex items-center gap-3 text-gray-600 bg-white/50 backdrop-blur-sm p-3 rounded-xl border border-rose-100 shadow-sm w-fit">
-                            <Users className="w-5 h-5 text-rose-400" />
-                            <div className="text-sm">
-                                <span className="block text-gray-400 text-xs uppercase tracking-wider">Parents</span>
-                                <span className="font-medium">Mr. {fatherName} & Mrs. {motherName}</span>
+                    <div className={`space-y-3 md:space-y-4 ${isLeft ? 'items-center md:items-start' : 'items-center md:items-end'} flex flex-col`}>
+                        <div className="flex items-center gap-3 text-gray-600 bg-white/50 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-rose-100 shadow-sm w-fit max-w-full">
+                            <Users className="w-4 h-4 md:w-5 md:h-5 text-rose-400 shrink-0" />
+                            <div className="text-left">
+                                <span className="block text-gray-400 text-[10px] md:text-xs uppercase tracking-wider">Parents</span>
+                                <span className="font-medium text-xs md:text-sm">Mr. {fatherName} & Mrs. {motherName}</span>
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-3 text-gray-600 bg-white/50 backdrop-blur-sm p-3 rounded-xl border border-rose-100 shadow-sm w-fit">
-                            <MapPin className="w-5 h-5 text-rose-400" />
-                            <div className="text-sm">
-                                <span className="block text-gray-400 text-xs uppercase tracking-wider">From</span>
-                                <span className="font-medium">{address}</span>
+                        <div className="flex items-center gap-3 text-gray-600 bg-white/50 backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-rose-100 shadow-sm w-fit max-w-full">
+                            <MapPin className="w-4 h-4 md:w-5 md:h-5 text-rose-400 shrink-0" />
+                            <div className="text-left">
+                                <span className="block text-gray-400 text-[10px] md:text-xs uppercase tracking-wider">From</span>
+                                <span className="font-medium text-xs md:text-sm">{address}</span>
                             </div>
                         </div>
                     </div>
@@ -95,32 +95,32 @@ const CoupleProfile = ({ fatherName, motherName, address, name, role, image, des
 
 export default function Couple({ weddingDetails }) {
     return (
-        <section id="couple" className="py-24 md:py-40 bg-gradient-to-b from-white to-rose-50/50 overflow-hidden">
+        <section id="couple" className="py-16 md:py-40 bg-gradient-to-b from-white to-rose-50/50 overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="text-center mb-24 md:mb-32 relative">
+                <div className="text-center mb-16 md:mb-32 relative">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         className="relative z-10"
                     >
-                        <span className="text-rose-500 font-medium tracking-[0.2em] uppercase text-xs md:text-sm mb-4 block">The Happy Couple</span>
-                        <h2 className="text-4xl md:text-7xl font-serif text-gray-800 mb-6">Groom & Bride</h2>
-                        <div className="flex justify-center items-center gap-4">
-                            <div className="h-px w-8 md:w-12 bg-rose-200" />
-                            <Heart className="w-5 h-5 md:w-6 md:h-6 text-rose-400 fill-rose-400 animate-pulse" />
-                            <div className="h-px w-8 md:w-12 bg-rose-200" />
+                        <span className="text-rose-500 font-medium tracking-[0.2em] uppercase text-[10px] md:text-sm mb-2 md:mb-4 block">The Happy Couple</span>
+                        <h2 className="text-3xl md:text-7xl font-serif text-gray-800 mb-4 md:mb-6">Groom & Bride</h2>
+                        <div className="flex justify-center items-center gap-3 md:gap-4">
+                            <div className="h-px w-6 md:w-12 bg-rose-200" />
+                            <Heart className="w-4 h-4 md:w-6 md:h-6 text-rose-400 fill-rose-400 animate-pulse" />
+                            <div className="h-px w-6 md:w-12 bg-rose-200" />
                         </div>
                     </motion.div>
 
                     {/* Background Text Decoration */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[10rem] md:text-[15rem] leading-none font-script text-rose-100/20 pointer-events-none whitespace-nowrap z-0">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[6rem] md:text-[15rem] leading-none font-script text-rose-100/20 pointer-events-none whitespace-nowrap z-0">
                         Love Story
                     </div>
                 </div>
 
-                <div className="space-y-32">
+                <div className="space-y-20 md:space-y-32">
                     <CoupleProfile
                         name={weddingDetails.brideName}
                         fatherName={weddingDetails.brideFatherName}

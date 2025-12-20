@@ -63,22 +63,22 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${isScrolled
-                ? 'bg-white/80 backdrop-blur-xl shadow-sm py-3'
+            className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ease-in-out ${isScrolled || isMobileMenuOpen
+                ? 'bg-white shadow-sm py-3'
                 : 'bg-transparent py-6'
                 }`}
         >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-50">
                 <div className="flex items-center justify-between">
                     <div
                         className="flex items-center gap-2 cursor-pointer group"
                         onClick={() => scrollToSection('#hero')}
                     >
                         <Heart
-                            className={`w-6 h-6 transition-colors duration-300 ${isScrolled ? 'text-rose-500' : 'text-white'} fill-current group-hover:scale-110`}
+                            className={`w-5 h-5 md:w-6 md:h-6 transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'text-rose-500' : 'text-rose-500 md:text-white'} fill-current group-hover:scale-110`}
                             viewBox="0 3 24 24"
                         />
-                        <span className={`font-script text-2xl transition-colors duration-300 ${isScrolled ? 'text-gray-800' : 'text-white'}`}>
+                        <span className={`font-script text-xl md:text-2xl transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'text-rose-900' : 'text-rose-900 md:text-white'}`}>
                             L & T
                         </span>
                     </div>
@@ -107,9 +107,9 @@ export default function Navbar() {
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className={`p-2 rounded-md transition-colors ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+                            className={`p-1.5 rounded-md transition-colors ${isMobileMenuOpen ? 'text-rose-600 bg-rose-50' : 'text-rose-500 bg-white/40'} backdrop-blur-md`}
                         >
-                            {isMobileMenuOpen ? <X /> : <Menu />}
+                            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
                     </div>
                 </div>
@@ -119,24 +119,31 @@ export default function Navbar() {
             <AnimatePresence>
                 {isMobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 overflow-hidden shadow-2xl"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl pt-32 px-4 pb-6 overflow-y-auto"
                     >
-                        <div className="px-4 py-4 space-y-2">
+                        <div className="flex flex-col space-y-2">
                             {navLinks.map((link) => (
-                                <button
+                                <a
                                     key={link.name}
-                                    onClick={() => scrollToSection(link.href)}
-                                    className={`block w-full text-left px-4 py-3 rounded-lg transition-colors text-base font-medium active:scale-95 transform duration-200
+                                    href={link.href}
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        scrollToSection(link.href);
+                                    }}
+                                    className={`block w-full text-left px-5 py-4 rounded-xl transition-all text-lg font-medium active:scale-95 transform duration-200
                                         ${activeSection === link.href.substring(1)
-                                            ? 'bg-rose-50 text-rose-600'
-                                            : 'text-gray-600 hover:bg-rose-50 hover:text-rose-600'
+                                            ? 'bg-rose-50 text-rose-600 shadow-sm border border-rose-100'
+                                            : 'text-gray-600 hover:bg-rose-50/50'
                                         }`}
                                 >
-                                    {link.name}
-                                </button>
+                                    <div className="flex items-center justify-between">
+                                        <span>{link.name}</span>
+                                        {activeSection === link.href.substring(1) && <Heart className="w-5 h-5 fill-current" />}
+                                    </div>
+                                </a>
                             ))}
                         </div>
                     </motion.div>

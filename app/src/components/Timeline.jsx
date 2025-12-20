@@ -29,33 +29,33 @@ export default function Timeline() {
                 <div className="absolute top-0 left-0 w-64 h-64 bg-rose-200/20 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 mix-blend-multiply pointer-events-none" />
                 <div className="absolute bottom-0 right-0 w-96 h-96 bg-rose-100/30 rounded-full blur-3xl translate-y-1/3 translate-x-1/3 mix-blend-multiply pointer-events-none" />
 
-                <div className="text-center mb-16 relative z-10">
+                <div className="text-center mb-12 md:mb-16 relative z-10">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-4xl md:text-6xl font-serif text-gray-800 mb-6 tracking-tight">
+                        <h2 className="text-3xl md:text-6xl font-serif text-gray-800 mb-4 md:mb-6 tracking-tight">
                             Wedding Schedule
                         </h2>
-                        <div className="flex items-center justify-center gap-3 mb-3">
-                            <span className="h-px w-12 bg-rose-300"></span>
-                            <p className="text-2xl text-rose-500 font-serif italic">January 11, 2026</p>
-                            <span className="h-px w-12 bg-rose-300"></span>
+                        <div className="flex items-center justify-center gap-2 md:gap-3 mb-2 md:mb-3">
+                            <span className="h-px w-8 md:w-12 bg-rose-300"></span>
+                            <p className="text-xl md:text-2xl text-rose-500 font-serif italic">January 11, 2026</p>
+                            <span className="h-px w-8 md:w-12 bg-rose-300"></span>
                         </div>
-                        <p className="text-gray-500 font-light tracking-widest uppercase text-sm">A Day of Love & Celebration</p>
+                        <p className="text-gray-500 font-light tracking-widest uppercase text-[10px] md:text-sm">A Day of Love & Celebration</p>
                     </motion.div>
                 </div>
 
                 {/* Tab Navigation */}
-                <div className="flex justify-center mb-20 relative z-10">
-                    <div className="inline-flex bg-white/50 backdrop-blur-sm p-1.5 rounded-full shadow-lg border border-white/60">
+                <div className="flex justify-center mb-12 md:mb-20 relative z-10">
+                    <div className="inline-flex bg-white/50 backdrop-blur-sm p-1 md:p-1.5 rounded-full shadow-lg border border-white/60">
                         {['groom', 'bride'].map((tab) => (
                             <button
                                 key={tab}
                                 onClick={() => setActiveTab(tab)}
-                                className={`relative px-8 py-3 rounded-full text-sm font-medium transition-colors duration-300 min-w-[160px] ${activeTab === tab ? 'text-white' : 'text-gray-600 hover:text-rose-600'
+                                className={`relative px-4 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium transition-colors duration-300 min-w-[120px] md:min-w-[160px] ${activeTab === tab ? 'text-white' : 'text-gray-600 hover:text-rose-600'
                                     }`}
                             >
                                 {activeTab === tab && (
@@ -73,13 +73,13 @@ export default function Timeline() {
                     </div>
                 </div>
 
-                <div className="relative min-h-[600px] z-10">
+                <div className="relative min-h-[500px] md:min-h-[600px] z-10">
                     {/* Vertical Line */}
-                    <div className="absolute left-8 md:left-1/2 transform -translate-x-1/2 h-full w-px">
+                    <div className="absolute left-6 md:left-1/2 transform -translate-x-1/2 h-full w-px">
                         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-rose-300 to-transparent opacity-60" />
                     </div>
 
-                    <div className="space-y-12 md:space-y-16">
+                    <div className="space-y-8 md:space-y-16">
                         <AnimatePresence mode="wait">
                             <motion.div
                                 key={activeTab}
@@ -87,7 +87,7 @@ export default function Timeline() {
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -20 }}
                                 transition={{ duration: 0.5 }}
-                                className="space-y-12 md:space-y-16"
+                                className="space-y-8 md:space-y-16"
                             >
                                 {events.map((event, index) => {
                                     const Icon = event.icon;
@@ -104,29 +104,29 @@ export default function Timeline() {
                                                 }`}
                                         >
                                             {/* Content Card */}
-                                            <div className={`w-full md:w-5/12 pl-16 md:pl-0 ${isEven ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'}`}>
+                                            <div className={`w-full md:w-5/12 pl-12 md:pl-0 ${isEven ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'}`}>
                                                 <div className="group relative">
                                                     <div className={`hidden md:block absolute top-0 ${isEven ? '-right-2' : '-left-2'} w-2 h-full bg-rose-500/0 group-hover:bg-rose-500/10 transition-colors duration-300 rounded${isEven ? '-l' : '-r'}-lg`} />
 
-                                                    <div className={`inline-flex items-center gap-2 text-rose-500 font-semibold mb-2 ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'
+                                                    <div className={`inline-flex items-center gap-2 text-rose-500 font-semibold mb-1.5 md:mb-2 ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'
                                                         }`}>
-                                                        <div className="px-3 py-1 rounded-full bg-rose-50 border border-rose-100 flex items-center gap-2 shadow-sm">
-                                                            <Clock className="w-3.5 h-3.5" />
-                                                            <span className="text-sm tracking-wide">{event.time}</span>
+                                                        <div className="px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-rose-50 border border-rose-100 flex items-center gap-1.5 shadow-sm">
+                                                            <Clock className="w-3 md:w-3.5 h-3 md:h-3.5" />
+                                                            <span className="text-xs md:text-sm tracking-wide">{event.time}</span>
                                                         </div>
                                                     </div>
 
-                                                    <h3 className="text-xl md:text-2xl font-serif text-gray-800 mb-2 group-hover:text-rose-600 transition-colors duration-300">
+                                                    <h3 className="text-lg md:text-2xl font-serif text-gray-800 mb-1 md:mb-2 group-hover:text-rose-600 transition-colors duration-300">
                                                         {event.title}
                                                     </h3>
-                                                    <p className="text-gray-500 font-light leading-relaxed text-sm md:text-base">
+                                                    <p className="text-gray-500 font-light leading-relaxed text-xs md:text-base">
                                                         {event.description}
                                                     </p>
                                                 </div>
                                             </div>
 
                                             {/* Center Icon (Desktop) / Left Line Icon (Mobile) */}
-                                            <div className="absolute left-8 top-0 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center h-full md:h-auto">
+                                            <div className="absolute left-6 top-0 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center h-full md:h-auto">
                                                 {/* Desktop Icon */}
                                                 <div className="relative w-14 h-14 hidden md:flex items-center justify-center">
                                                     <motion.div
@@ -140,8 +140,8 @@ export default function Timeline() {
                                                 </div>
 
                                                 {/* Mobile Dot/Icon */}
-                                                <div className="md:hidden absolute top-0 w-10 h-10 bg-white border-2 border-rose-400 rounded-full z-10 shadow-md flex items-center justify-center">
-                                                    <Icon className="w-5 h-5 text-rose-500" />
+                                                <div className="md:hidden absolute top-0 w-8 h-8 bg-white border-2 border-rose-400 rounded-full z-10 shadow-md flex items-center justify-center -translate-x-1/2">
+                                                    <Icon className="w-4 h-4 text-rose-500" />
                                                 </div>
                                             </div>
 
