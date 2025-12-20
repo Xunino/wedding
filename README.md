@@ -3,7 +3,7 @@
 Chào mừng bạn đến với trang web kỷ niệm ngày cưới của chúng tôi. Đây là nơi chúng tôi chia sẻ những khoảnh khắc đẹp nhất và thông tin về ngày trọng đại của mình.
 
 ## 📅 Thông Tin Lễ Cưới
-- **Ngày cưới:** 12 tháng 01, 2026 (Nhằm ngày 24 tháng 11 năm 2026)
+- **Ngày cưới:** 12 tháng 01, 2026 (Nhằm ngày 24 tháng 11 năm Ất Tỵ)
 - **Chú rể:** Nguyễn Đức Linh
 - **Cô dâu:** Nguyễn Thu Thủy
 - **Địa điểm:** Hoa Lư & Kim Sơn, Ninh Bình, Việt Nam
