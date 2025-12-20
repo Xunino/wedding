@@ -4,18 +4,31 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function Hero({ weddingDetails }) {
     const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+    const [isMobile, setIsMobile] = useState(true); // Default to mobile for SSR safety
+
     const { scrollY } = useScroll();
+
+    // Parallax Effects - Only active on desktop
     const y1 = useTransform(scrollY, [0, 500], [0, 200]);
-    // Parallax Effects
     const yText = useTransform(scrollY, [0, 300], [0, 100]);
     const opacityText = useTransform(scrollY, [0, 200], [1, 0]);
     const blurText = useTransform(scrollY, [0, 200], ["0px", "10px"]);
-
     const yPills = useTransform(scrollY, [0, 300], [0, 150]);
     const opacityPills = useTransform(scrollY, [0, 300], [1, 0]);
-
     const yCountdown = useTransform(scrollY, [0, 300], [0, 200]);
     const opacityCountdown = useTransform(scrollY, [0, 400], [1, 0]);
+
+    useEffect(() => {
+        // Check if window is available (client-side)
+        if (typeof window === 'undefined') return;
+
+        const mediaQuery = window.matchMedia('(min-width: 768px)');
+        setIsMobile(!mediaQuery.matches);
+
+        const handleChange = (e) => setIsMobile(!e.matches);
+        mediaQuery.addEventListener('change', handleChange);
+        return () => mediaQuery.removeEventListener('change', handleChange);
+    }, []);
 
     useEffect(() => {
         const calculateCountdown = () => {
@@ -37,6 +50,13 @@ export default function Hero({ weddingDetails }) {
         return () => clearInterval(timer);
     }, [weddingDetails.weddingDate]);
 
+    // Static styles for mobile (no scroll-linked animations)
+    const mobileStaticStyle = {};
+    const desktopParallaxText = { y: yText, opacity: opacityText, filter: blurText };
+    const desktopParallaxHeart = { opacity: opacityText, filter: blurText };
+    const desktopParallaxPills = { y: yPills, opacity: opacityPills };
+    const desktopParallaxCountdown = { y: yCountdown, opacity: opacityCountdown };
+
     return (
         <section id="hero" className="relative h-[100dvh] overflow-hidden bg-black md:bg-black">
             {/* Desktop Background Image with Parallax */}
@@ -49,7 +69,7 @@ export default function Hero({ weddingDetails }) {
                 }}
             />
 
-            {/* Mobile Optimized Background (Full Cover) */}
+            {/* Mobile Optimized Background (Full Cover, No Parallax) */}
             <div className="md:hidden absolute inset-0 bg-[#F5F5F7]">
                 <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat z-10"
@@ -70,12 +90,12 @@ export default function Hero({ weddingDetails }) {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, ease: "easeOut" }}
                         className="mb-4 md:mb-6"
-                        style={{ opacity: opacityText, filter: blurText }}
+                        style={isMobile ? mobileStaticStyle : desktopParallaxHeart}
                     >
                         <Heart className="w-10 h-10 md:w-16 md:h-16 mx-auto text-rose-400 fill-rose-400/50 animate-pulse drop-shadow-lg" />
                     </motion.div>
 
-                    <motion.div style={{ y: yText, opacity: opacityText, filter: blurText }} className="flex flex-col md:space-y-3 items-center justify-center">
+                    <motion.div style={isMobile ? mobileStaticStyle : desktopParallaxText} className="flex flex-col md:space-y-3 items-center justify-center">
                         <div className="flex flex-row md:flex-col items-center justify-center gap-2 md:gap-0">
                             <motion.h1
                                 initial={{ opacity: 0, x: -20 }}
@@ -116,9 +136,9 @@ export default function Hero({ weddingDetails }) {
                     transition={{ duration: 0.8, delay: 1.5 }}
                     className="absolute bottom-16 md:bottom-20 w-full px-4 z-40 flex flex-col items-center gap-4 md:gap-6"
                 >
-                    {/* Info Pills (Date & Location) - Moved here for mobile layout */}
-                    <motion.div style={{ y: yPills, opacity: opacityPills }} className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 text-[10px] md:text-xl font-medium md:font-light tracking-widest uppercase">
-                        <div className="flex items-center gap-2 bg-white/60 md:bg-black/20 backdrop-blur-sm md:backdrop-blur-sm px-3 md:px-6 py-1.5 md:py-2 rounded-full border border-rose-100 md:border-white/10 text-rose-900 md:text-white shadow-sm md:shadow-none">
+                    {/* Info Pills (Date & Location) - No backdrop-blur on mobile */}
+                    <motion.div style={isMobile ? mobileStaticStyle : desktopParallaxPills} className="flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6 text-[10px] md:text-xl font-medium md:font-light tracking-widest uppercase">
+                        <div className="flex items-center gap-2 bg-white/80 md:bg-black/20 md:backdrop-blur-sm px-3 md:px-6 py-1.5 md:py-2 rounded-full border border-rose-100 md:border-white/10 text-rose-900 md:text-white shadow-sm md:shadow-none">
                             <Calendar className="w-3 md:w-5 h-3 md:h-5 text-rose-500 md:text-rose-300" />
                             <span>
                                 {weddingDetails.weddingDate.toLocaleDateString('en-US', {
@@ -129,14 +149,14 @@ export default function Hero({ weddingDetails }) {
                                 })}
                             </span>
                         </div>
-                        <div className="flex items-center gap-2 bg-white/60 md:bg-black/20 backdrop-blur-sm md:backdrop-blur-sm px-3 md:px-6 py-1.5 md:py-2 rounded-full border border-rose-100 md:border-white/10 text-rose-900 md:text-white shadow-sm md:shadow-none">
+                        <div className="flex items-center gap-2 bg-white/80 md:bg-black/20 md:backdrop-blur-sm px-3 md:px-6 py-1.5 md:py-2 rounded-full border border-rose-100 md:border-white/10 text-rose-900 md:text-white shadow-sm md:shadow-none">
                             <MapPin className="w-3 md:w-5 h-3 md:h-5 text-rose-500 md:text-rose-300" />
                             <span>{weddingDetails.location}</span>
                         </div>
                     </motion.div>
 
-                    {/* Countdown Timer */}
-                    <motion.div style={{ y: yCountdown, opacity: opacityCountdown }} className="flex justify-center gap-3 md:gap-8 bg-white/60 md:bg-black/10 backdrop-blur-sm md:backdrop-blur-md py-4 md:py-6 px-4 md:px-10 rounded-2xl border border-rose-100 md:border-white/10 mx-auto max-w-[95%] md:max-w-4xl shadow-sm md:shadow-2xl text-rose-900 md:text-white">
+                    {/* Countdown Timer - No backdrop-blur on mobile */}
+                    <motion.div style={isMobile ? mobileStaticStyle : desktopParallaxCountdown} className="flex justify-center gap-3 md:gap-8 bg-white/80 md:bg-black/10 md:backdrop-blur-md py-4 md:py-6 px-4 md:px-10 rounded-2xl border border-rose-100 md:border-white/10 mx-auto max-w-[95%] md:max-w-4xl shadow-sm md:shadow-2xl text-rose-900 md:text-white">
                         {[
                             { label: 'Days', value: countdown.days },
                             { label: 'Hours', value: countdown.hours },
@@ -154,12 +174,12 @@ export default function Hero({ weddingDetails }) {
                 </motion.div>
             </motion.div>
 
-            {/* Scroll Indicator */}
+            {/* Scroll Indicator - Hidden on Mobile */}
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2, duration: 1 }}
-                className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+                className="hidden md:block absolute bottom-8 left-1/2 transform -translate-x-1/2"
             >
                 <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-1 backdrop-blur-sm">
                     <motion.div
@@ -172,3 +192,4 @@ export default function Hero({ weddingDetails }) {
         </section >
     );
 }
+

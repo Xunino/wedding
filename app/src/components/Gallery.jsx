@@ -134,7 +134,7 @@ export default function Gallery({ photos }) {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={closeLightbox}
-                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-md p-2 md:p-4"
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 md:backdrop-blur-md p-2 md:p-4"
                     >
                         <button
                             onClick={(e) => { e.stopPropagation(); closeLightbox(); }}

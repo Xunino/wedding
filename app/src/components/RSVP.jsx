@@ -223,7 +223,7 @@ export default function RSVP() {
             </div>
 
             <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-                <div className="bg-white/90 backdrop-blur-xl rounded-[2rem] shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/60">
+                <div className="bg-white/95 md:backdrop-blur-xl rounded-[2rem] shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/60">
                     {/* Image Side */}
                     <div className="md:w-[45%] bg-rose-100 relative min-h-[250px] md:min-h-[550px] overflow-hidden group">
                         <img

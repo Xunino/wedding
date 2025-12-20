@@ -107,7 +107,7 @@ export default function Navbar() {
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className={`p-1.5 rounded-md transition-colors ${isMobileMenuOpen ? 'text-rose-600 bg-rose-50' : 'text-rose-500 bg-white/40'} backdrop-blur-md`}
+                            className={`p-1.5 rounded-md transition-colors ${isMobileMenuOpen ? 'text-rose-600 bg-rose-50' : 'text-rose-500 bg-white/80'}`}
                         >
                             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                         </button>
@@ -122,7 +122,7 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
-                        className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl pt-32 px-4 pb-6 overflow-y-auto"
+                        className="fixed inset-0 z-40 bg-white pt-32 px-4 pb-6 overflow-y-auto"
                     >
                         <div className="flex flex-col space-y-2">
                             {navLinks.map((link) => (
