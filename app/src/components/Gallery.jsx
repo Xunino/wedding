@@ -74,13 +74,11 @@ export default function Gallery({ photos }) {
 
                 {/* Gallery Grid */}
                 <motion.div
-                    layout
                     className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4"
                 >
                     <AnimatePresence mode='popLayout'>
                         {visiblePhotos.map((photo) => (
                             <motion.div
-                                layout
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
@@ -92,7 +90,7 @@ export default function Gallery({ photos }) {
                                 <img
                                     src={photo.thumb}
                                     alt={photo.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
                                     loading="lazy"
                                 />
                                 <div className="absolute inset-0 bg-black/40 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">

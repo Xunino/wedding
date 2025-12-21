@@ -117,8 +117,8 @@ export default function Timeline() {
 
     return (
         <section id="timeline" className="py-12 md:py-20 bg-stone-50 overflow-hidden relative">
-            {/* Decorative Background */}
-            <div className="absolute inset-0 pointer-events-none">
+            {/* Decorative Background - Hidden on mobile for performance */}
+            <div className="absolute inset-0 pointer-events-none hidden md:block">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-rose-100/20 rounded-full blur-3xl opacity-50" />
             </div>
 
