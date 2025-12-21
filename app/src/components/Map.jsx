@@ -58,9 +58,9 @@ export default function Map({ weddingDetails }) {
                             {/* Info */}
                             <div className="text-center space-y-3">
                                 <h3 className="text-2xl font-serif text-gray-800">{loc.title}</h3>
-                                <div className="flex items-center justify-center gap-2 text-gray-600">
-                                    <MapPin className="w-5 h-5 text-rose-400" />
-                                    <p className="text-lg">{loc.address}</p>
+                                <div className="flex items-start md:items-center justify-center gap-2 text-gray-600 px-2 md:px-0">
+                                    <MapPin className="w-5 h-5 text-rose-400 shrink-0 mt-0.5 md:mt-0" />
+                                    <p className="text-sm md:text-lg text-left md:text-center">{loc.address}</p>
                                 </div>
                                 <a
                                     href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.address)}`}
