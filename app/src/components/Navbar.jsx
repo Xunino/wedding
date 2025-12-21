@@ -16,13 +16,13 @@ export default function Navbar() {
     }, []);
 
     const navLinks = [
-        { name: 'Home', href: '#hero' },
-        { name: 'Couple', href: '#couple' },
-        { name: 'Timeline', href: '#timeline' },
-        { name: 'Gallery', href: '#gallery' },
-        { name: 'Map', href: '#map' },
-        { name: 'RSVP', href: '#rsvp' },
-        { name: 'Gift', href: '#gift' },
+        { name: 'Trang chủ', href: '#hero' },
+        { name: 'Cặp đôi', href: '#couple' },
+        { name: 'Chương trình', href: '#timeline' },
+        { name: 'Album', href: '#gallery' },
+        { name: 'Bản đồ', href: '#map' },
+        { name: 'Tham dự', href: '#rsvp' },
+        { name: 'Mừng cưới', href: '#gift' },
     ];
 
     useEffect(() => {
@@ -55,9 +55,18 @@ export default function Navbar() {
 
     const scrollToSection = (href) => {
         setIsMobileMenuOpen(false);
-        const element = document.querySelector(href);
+        const sectionId = href.substring(1);
+        setActiveSection(sectionId);
+        const element = document.getElementById(sectionId);
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            const navbarHeight = 40;
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
         }
     };
 
@@ -79,7 +88,7 @@ export default function Navbar() {
                             viewBox="0 3 24 24"
                         />
                         <span className={`font-script text-xl md:text-2xl transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'text-rose-900' : 'text-rose-900 md:text-white'}`}>
-                            L & T
+                            T & L
                         </span>
                     </div>
 

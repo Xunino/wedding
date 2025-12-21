@@ -7,14 +7,14 @@ import brideMap from '../../images/maps/image.png';
 export default function Map({ weddingDetails }) {
     const locations = [
         {
-            title: "Groom's Family Home",
+            title: "Nhà Trai",
             address: weddingDetails.groomDetailAddress,
             locationRaw: weddingDetails.groomDetailAddress,
             type: 'Groom',
             image: groomMap
         },
         {
-            title: "Bride's Family Home",
+            title: "Nhà Gái",
             address: weddingDetails.brideDetailAddress,
             locationRaw: weddingDetails.brideDetailAddress,
             type: 'Bride',
@@ -26,8 +26,8 @@ export default function Map({ weddingDetails }) {
         <section id="map" className="py-20 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">The Venues</h2>
-                    <p className="text-gray-500 font-light uppercase tracking-wide">We can't wait to see you there</p>
+                    <h2 className="text-3xl md:text-5xl font-serif text-gray-800 mb-4">Địa Điểm Tổ Chức</h2>
+                    <p className="text-gray-500 font-light uppercase tracking-wide">Rất mong được đón tiếp quý khách</p>
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-12">
@@ -50,7 +50,7 @@ export default function Map({ weddingDetails }) {
                                 >
                                     <div className="bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-lg transform group-hover:scale-105 transition-all duration-300 flex items-center gap-2">
                                         <MapPin className="w-5 h-5 text-rose-500" />
-                                        <span className="font-medium text-gray-800">View on Google Maps</span>
+                                        <span className="font-medium text-gray-800">Xem trên Google Maps</span>
                                     </div>
                                 </a>
                             </div>
@@ -68,7 +68,7 @@ export default function Map({ weddingDetails }) {
                                     rel="noopener noreferrer"
                                     className="inline-block mt-2 text-rose-500 hover:text-rose-600 font-medium underline underline-offset-4"
                                 >
-                                    Get Directions
+                                    Chỉ Đường
                                 </a>
                             </div>
                         </div>

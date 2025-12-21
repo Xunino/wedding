@@ -74,15 +74,15 @@ const CoupleProfile = ({ fatherName, motherName, address, name, role, image, des
                         <div className="flex items-center gap-3 text-gray-600 bg-white md:bg-white/50 md:backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-rose-100 shadow-sm w-fit max-w-full">
                             <Users className="w-4 h-4 md:w-5 md:h-5 text-rose-400 shrink-0" />
                             <div className="text-left">
-                                <span className="block text-gray-400 text-[10px] md:text-xs uppercase tracking-wider">Parents</span>
-                                <span className="font-medium text-xs md:text-sm">Mr. {fatherName} & Mrs. {motherName}</span>
+                                <span className="block text-gray-400 text-[10px] md:text-xs uppercase tracking-wider">Phụ Mẫu</span>
+                                <span className="font-medium text-xs md:text-sm">Ông {fatherName} & Bà {motherName}</span>
                             </div>
                         </div>
 
                         <div className="flex items-center gap-3 text-gray-600 bg-white md:bg-white/50 md:backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-rose-100 shadow-sm w-fit max-w-full">
                             <MapPin className="w-4 h-4 md:w-5 md:h-5 text-rose-400 shrink-0" />
                             <div className="text-left">
-                                <span className="block text-gray-400 text-[10px] md:text-xs uppercase tracking-wider">From</span>
+                                <span className="block text-gray-400 text-[10px] md:text-xs uppercase tracking-wider">Đến từ</span>
                                 <span className="font-medium text-xs md:text-sm">{address}</span>
                             </div>
                         </div>
@@ -105,8 +105,8 @@ export default function Couple({ weddingDetails }) {
                         viewport={{ once: true }}
                         className="relative z-10"
                     >
-                        <span className="text-rose-500 font-medium tracking-[0.2em] uppercase text-[10px] md:text-sm mb-2 md:mb-4 block">The Happy Couple</span>
-                        <h2 className="text-3xl md:text-7xl font-serif text-gray-800 mb-4 md:mb-6">Groom & Bride</h2>
+                        <span className="text-rose-500 font-medium tracking-[0.2em] uppercase text-[10px] md:text-sm mb-2 md:mb-4 block">Cặp Đôi Hạnh Phúc</span>
+                        <h2 className="text-3xl md:text-5xl font-serif text-gray-800 mb-4 md:mb-6">Cô Dâu & Chú Rể</h2>
                         <div className="flex justify-center items-center gap-3 md:gap-4">
                             <div className="h-px w-6 md:w-12 bg-rose-200" />
                             <Heart className="w-4 h-4 md:w-6 md:h-6 text-rose-400 fill-rose-400 animate-pulse" />
@@ -126,7 +126,7 @@ export default function Couple({ weddingDetails }) {
                         fatherName={weddingDetails.brideFatherName}
                         motherName={weddingDetails.brideMotherName}
                         address={weddingDetails.brideAddress}
-                        role="The Bride"
+                        role="Cô Dâu"
                         image={weddingDetails.brideImage}
                         description={weddingDetails.brideDescription}
                         align="left"
@@ -137,7 +137,7 @@ export default function Couple({ weddingDetails }) {
                         fatherName={weddingDetails.groomFatherName}
                         motherName={weddingDetails.groomMotherName}
                         address={weddingDetails.groomAddress}
-                        role="The Groom"
+                        role="Chú Rể"
                         image={weddingDetails.groomImage}
                         description={weddingDetails.groomDescription}
                         align="right"

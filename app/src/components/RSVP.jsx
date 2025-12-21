@@ -6,10 +6,10 @@ import brideMap from '../../images/large/HERO0878.JPG';
 
 // Initial wedding wishes
 const INITIAL_WISHES = [
-    "Happily Ever After", "Happy Wedding", "Forever Together", "Forever Love",
-    "Blessed Union", "Happy Marriage", "Perfect Happiness", "Best Wishes",
-    "Together Forever", "True Love", "Growing Old Together", "Sweet Couple",
-    "Wedded Bliss", "Just Married", "Overflowing Love", "Endless Love"
+    "Trăm Năm Hạnh Phúc", "Hạnh Phúc Mãi Mãi", "Bên Nhau Trọn Đời", "Vĩnh Kết Đồng Tâm",
+    "Sớm Sinh Quý Tử", "Chúc Mừng Hạnh Phúc", "Tình Yêu Vĩnh Cửu", "Một Nhà Hạnh Phúc",
+    "Hôn Nhân Viên Mãn", "Sắt Son Một Lòng", "Cùng Nhau Già Đi", "Cặp Đôi Hoàn Hảo",
+    "Hạnh Phúc Ngập Tràn", "Yêu Thương Đong Đầy", "Mãi Mãi Bên Nhau", "Tình Yêu Bền Vững"
 ];
 
 const FloatingParticles = () => {
@@ -233,7 +233,7 @@ export default function RSVP() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-rose-900/60 via-transparent to-transparent flex items-end justify-center pb-6 md:pb-10">
                             <h3 className="text-2xl md:text-4xl font-script text-white drop-shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                Join Our Joy
+                                Chung Vui Cùng <br /> Chúng Tôi
                             </h3>
                         </div>
                     </div>
@@ -243,11 +243,11 @@ export default function RSVP() {
                         <div className="text-center mb-4 md:mb-6">
                             <div className="flex items-center justify-center gap-2 mb-1.5 md:mb-2">
                                 <span className="h-[1px] w-6 md:w-8 bg-rose-300"></span>
-                                <span className="text-rose-500 uppercase tracking-[0.2em] text-[9px] md:text-xs font-bold">Celebration</span>
+                                <span className="text-rose-500 uppercase tracking-[0.2em] text-[9px] md:text-xs font-bold">Lễ Cưới</span>
                                 <span className="h-[1px] w-6 md:w-8 bg-rose-300"></span>
                             </div>
-                            <h2 className="text-3xl md:text-4xl font-serif text-gray-800 mb-1 md:mb-2">RSVP</h2>
-                            <p className="text-gray-500 text-xs md:text-sm font-light">We would love to have you with us.<br />Please confirm below.</p>
+                            <h2 className="text-3xl md:text-5xl font-serif text-gray-800 mb-1 md:mb-2">Xác Nhận Tham Dự</h2>
+                            <p className="text-gray-500 text-xs md:text-sm font-light">Sự hiện diện của bạn là niềm vinh hạnh của chúng tôi.<br />Xin vui lòng xác nhận bên dưới.</p>
                         </div>
 
                         {isSubmitted ? (
@@ -259,21 +259,21 @@ export default function RSVP() {
                                 <div className="w-20 h-20 md:w-24 md:h-24 bg-gradient-to-tr from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6 shadow-xl shadow-green-200/50 ring-4 ring-green-100">
                                     <Check className="w-10 h-10 md:w-12 md:h-12 text-white" />
                                 </div>
-                                <h3 className="text-2xl md:text-3xl font-serif text-gray-800 mb-1 md:mb-2">Thank You!</h3>
-                                <p className="text-gray-500 text-base md:text-lg">Your response has been saved.</p>
-                                <p className="text-gray-400 text-xs md:text-sm mt-6 md:mt-8 font-medium tracking-wide">WE CAN'T WAIT TO SEE YOU!</p>
+                                <h3 className="text-2xl md:text-3xl font-serif text-gray-800 mb-1 md:mb-2">Cảm Ơn Bạn!</h3>
+                                <p className="text-gray-500 text-base md:text-lg">Thông tin của bạn đã được ghi nhận.</p>
+                                <p className="text-gray-400 text-xs md:text-sm mt-6 md:mt-8 font-medium tracking-wide">HẸN GẶP LẠI BẠN TRONG NGÀY VUI!</p>
                             </motion.div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
                                 <div>
-                                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 ml-1">Your Name</label>
+                                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 ml-1">Tên Của Bạn</label>
                                     <input
                                         type="text"
                                         required
                                         className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-xl bg-stone-50/50 border border-stone-100 focus:border-rose-300 focus:ring-2 focus:ring-rose-100/50 outline-none transition-all duration-300 placeholder-gray-300 text-sm"
                                         value={formState.name}
                                         onChange={e => setFormState({ ...formState, name: e.target.value })}
-                                        placeholder="Type your full name"
+                                        placeholder="Nhập họ và tên"
                                     />
                                 </div>
 
@@ -281,7 +281,7 @@ export default function RSVP() {
                                 <div className="grid grid-cols-1 sm:grid-cols-[1.5fr_1fr] gap-4">
                                     {/* Phone */}
                                     <div>
-                                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 ml-1">Phone</label>
+                                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 ml-1">Số Điện Thoại</label>
                                         <input
                                             type="tel"
                                             required
@@ -293,7 +293,7 @@ export default function RSVP() {
                                     </div>
                                     {/* Guests */}
                                     <div>
-                                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 ml-1">Guests</label>
+                                        <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 ml-1">Số Lượng Khách</label>
                                         <div className="relative">
                                             <select
                                                 className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-xl bg-stone-50/50 border border-stone-100 focus:border-rose-300 focus:ring-2 focus:ring-rose-100/50 outline-none transition-all duration-300 appearance-none cursor-pointer text-sm pr-10"
@@ -301,7 +301,7 @@ export default function RSVP() {
                                                 onChange={e => setFormState({ ...formState, guests: e.target.value })}
                                             >
                                                 {[1, 2, 3, 4, 5].map(num => (
-                                                    <option key={num} value={num}>{num} {num === 1 ? 'guest' : 'guests'}</option>
+                                                    <option key={num} value={num}>{num} Khách</option>
                                                 ))}
                                             </select>
                                             <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-gray-400">
@@ -312,13 +312,13 @@ export default function RSVP() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 ml-1">Wishes</label>
+                                    <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 ml-1">Lời Chúc</label>
                                     <textarea
                                         rows="2"
                                         className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-xl bg-stone-50/50 border border-stone-100 focus:border-rose-300 focus:ring-2 focus:ring-rose-100/50 outline-none transition-all duration-300 placeholder-gray-300 resize-none text-sm"
                                         value={formState.message}
                                         onChange={e => setFormState({ ...formState, message: e.target.value })}
-                                        placeholder="Send your warmest wishes..."
+                                        placeholder="Gửi những lời chúc tốt đẹp nhất..."
                                     ></textarea>
                                 </div>
 
@@ -327,7 +327,7 @@ export default function RSVP() {
                                     className="w-full py-3 md:py-4 bg-gradient-to-r from-rose-400 to-rose-600 text-white rounded-xl font-bold tracking-wider hover:from-rose-500 hover:to-rose-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-rose-200/80 transform hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base uppercase"
                                 >
                                     <Send className="w-4 h-4 md:w-5 md:h-5" />
-                                    <span>CONFIRM ATTENDANCE</span>
+                                    <span>XÁC NHẬN THAM DỰ</span>
                                 </button>
                             </form>
                         )}

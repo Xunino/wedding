@@ -141,8 +141,8 @@ export default function Hero({ weddingDetails }) {
                         <div className="flex items-center gap-2 bg-white/80 md:bg-black/20 md:backdrop-blur-sm px-3 md:px-6 py-1.5 md:py-2 rounded-full border border-rose-100 md:border-white/10 text-rose-900 md:text-white shadow-sm md:shadow-none">
                             <Calendar className="w-3 md:w-5 h-3 md:h-5 text-rose-500 md:text-rose-300" />
                             <span>
-                                {weddingDetails.weddingDate.toLocaleDateString('en-US', {
-                                    weekday: 'short',
+                                {weddingDetails.weddingDate.toLocaleDateString('vi-VN', {
+                                    weekday: 'long',
                                     year: 'numeric',
                                     month: 'long',
                                     day: 'numeric',
@@ -158,10 +158,10 @@ export default function Hero({ weddingDetails }) {
                     {/* Countdown Timer - No backdrop-blur on mobile */}
                     <motion.div style={isMobile ? mobileStaticStyle : desktopParallaxCountdown} className="flex justify-center gap-3 md:gap-8 bg-white/80 md:bg-black/10 md:backdrop-blur-md py-4 md:py-6 px-4 md:px-10 rounded-2xl border border-rose-100 md:border-white/10 mx-auto max-w-[95%] md:max-w-4xl shadow-sm md:shadow-2xl text-rose-900 md:text-white">
                         {[
-                            { label: 'Days', value: countdown.days },
-                            { label: 'Hours', value: countdown.hours },
-                            { label: 'Mins', value: countdown.minutes },
-                            { label: 'Secs', value: countdown.seconds },
+                            { label: 'Ngày', value: countdown.days },
+                            { label: 'Giờ', value: countdown.hours },
+                            { label: 'Phút', value: countdown.minutes },
+                            { label: 'Giây', value: countdown.seconds },
                         ].map((item, index) => (
                             <div key={index} className="text-center min-w-[50px] md:min-w-[90px]">
                                 <div className="text-2xl md:text-5xl font-bold font-serif mb-0.5 md:mb-1 tabular-nums">

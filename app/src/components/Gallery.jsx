@@ -3,11 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Camera, ChevronDown, ChevronUp } from 'lucide-react';
 
 const CATEGORIES = [
-    { id: 'all', name: 'All' },
-    { id: 'ceremony', name: 'Ceremony' },
-    { id: 'couple', name: 'Couple' },
-    { id: 'reception', name: 'Reception' },
-    { id: 'details', name: 'Details' },
+    { id: 'all', name: 'Tất cả' },
+    { id: 'ceremony', name: 'Lễ Cưới' },
+    { id: 'couple', name: 'Cặp Đôi' },
+    { id: 'reception', name: 'Tiệc Cưới' },
+    { id: 'details', name: 'Chi Tiết' },
 ];
 
 export default function Gallery({ photos }) {
@@ -46,8 +46,8 @@ export default function Gallery({ photos }) {
         <section id="gallery" className="py-16 md:py-32 bg-rose-50/30">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-8 md:mb-12">
-                    <h2 className="text-3xl md:text-5xl font-serif text-gray-800 mb-2 md:mb-4">Captured Moments</h2>
-                    <p className="text-gray-500 font-light tracking-wide uppercase text-xs md:text-sm">Memories to cherish forever</p>
+                    <h2 className="text-3xl md:text-5xl font-serif text-gray-800 mb-2 md:mb-4">Khoảnh Khắc Đáng Nhớ</h2>
+                    <p className="text-gray-500 font-light tracking-wide uppercase text-xs md:text-sm">Kỷ niệm lưu giữ mãi mãi</p>
                 </div>
 
                 {/* Filter Buttons */}
@@ -114,11 +114,11 @@ export default function Gallery({ photos }) {
                         >
                             {isExpanded ? (
                                 <>
-                                    Show Less <ChevronUp className="w-4 h-4" />
+                                    Thu gọn <ChevronUp className="w-4 h-4" />
                                 </>
                             ) : (
                                 <>
-                                    View More <ChevronDown className="w-4 h-4" />
+                                    Xem thêm <ChevronDown className="w-4 h-4" />
                                 </>
                             )}
                         </button>

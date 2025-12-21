@@ -1,159 +1,258 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Clock, Heart, Music, Utensils, Camera, Home, Sparkles } from 'lucide-react';
+import { Clock, Heart, Music, Utensils, Camera, Home, Sparkles, Gift, Users, Star } from 'lucide-react';
 
-const groomEvents = [
-    { time: '09:00 AM', title: 'Welcome Guests (Groom)', icon: Heart, description: 'Guests arrive at Groom\'s house.' },
-    { time: '10:00 AM', title: 'Procession Preparation', icon: Home, description: 'Preparing the procession to Bride\'s house.' },
-    { time: '11:00 AM', title: 'The Ceremony', icon: Heart, description: 'Exchange of vows at Bride\'s house.' },
-    { time: '12:00 PM', title: 'Lunch Reception', icon: Utensils, description: 'Enjoy a delicious meal together.' },
-    { time: '02:00 PM', title: 'Music & Party', icon: Music, description: 'Celebration with friends and family.' },
-];
+const SCHEDULE_DATA = {
+    'jan10': {
+        title: 'Lễ Đính Hôn',
+        date: '10 Tháng 1, 2026',
+        description: 'Đính Hôn Truyền Thống',
+        events: [
+            { time: '08:30 AM', title: 'Chuẩn Bị Sính Lễ', icon: Gift, description: 'Nhà trai chuẩn bị các mâm tráp sính lễ cẩn thận.' },
+            { time: '09:30 AM', title: 'Làm Lễ Chính Thức', icon: Heart, description: 'Nhà trai đến nhà gái để chính thức xin dâu.' },
+            { time: '10:30 AM', title: 'Dâng Hương Gia Tiên', icon: Home, description: 'Cặp đôi dâng hương lên bàn thờ tổ tiên.' },
+            { time: '11:30 AM', title: 'Tiệc Trà Thân Mật', icon: Utensils, description: 'Hai gia đình cùng dùng bữa cơm thân mật.' },
+        ]
+    },
+    'jan11': {
+        title: 'Tiệc Cưới',
+        date: '11 Tháng 1, 2026',
+        description: 'Tiệc Mừng Hạnh Phúc',
+        events: [
+            { time: '09:00 AM', title: 'Đón Khách', icon: Users, description: 'Hân hoan chào đón quý quan khách đến chung vui.' },
+            { time: '11:00 AM', title: 'Nhập Tiệc', icon: Utensils, description: 'Mời quý khách thưởng thức các món ăn ngon miệng.' },
+            { time: '14:00 PM', title: 'Giao Lưu Âm Nhạc', icon: Music, description: 'Các tiết mục văn nghệ và tiệc trà chiều.' },
+            { time: '17:00 PM', title: 'Đón Khách Buổi Tối', icon: Camera, description: 'Chụp hình kỷ niệm cùng cô dâu chú rể.' },
+            { time: '18:30 PM', title: 'Lễ Cưới', icon: Heart, description: 'Nghi thức cắt bánh, rót rượu và trao nhẫn.' },
+            { time: '19:00 PM', title: 'Khai Tiệc', icon: Utensils, description: 'Thưởng thức tiệc chính và nâng ly chúc mừng.' },
+            { time: '21:00 PM', title: 'Cảm Ơn', icon: Sparkles, description: 'Cặp đôi gửi lời cảm ơn đến quý quan khách.' },
+        ],
+        menu: [
+            'Gà hấp lá chanh',
+            'Canh mọc thập cẩm',
+            'Thịt dê hấp',
+            'Tôm chiên hoàng bào',
+            'Thịt lợn chao',
+            'Bò sốt tiêu mịn',
+            'Xôi nếp đậu xanh',
+            'Bò xào cần tỏi',
+            'Rau củ luộc',
+        ]
+    },
+    'jan12': {
+        title: 'Lễ Thành Hôn',
+        date: '12 Tháng 1, 2026',
+        description: 'Lễ Cưới Chính Thức',
+        hasSides: true,
+        groomEvents: [
+            { time: '07:00 AM', title: 'Lên Đường Đón Dâu', icon: Home, description: 'Phái đoàn nhà trai xuất phát đi đón dâu.' },
+            { time: '10:00 AM', title: 'Lễ Tại Nhà Gái', icon: Heart, description: 'Làm lễ xin dâu và nghi thức truyền thống.' },
+            { time: '11:00 AM', title: 'Rước Dâu Về Nhà Trai', icon: Utensils, description: 'Đưa cô dâu về ra mắt gia tiên nhà chồng.' },
+            { time: '13:00 PM', title: 'Lễ Thành Hôn', icon: Sparkles, description: 'Hoàn thành các nghi lễ, cảm ơn quan khách.' },
+        ],
+        brideEvents: [
+            { time: '07:30 AM', title: 'Đón Tiếp Nhà Trai', icon: Users, description: 'Nhà gái hân hoan đón tiếp đoàn nhà trai.' },
+            { time: '08:30 AM', title: 'Lễ Vu Quy', icon: Heart, description: 'Làm lễ gia tiên và trao nhẫn tại nhà gái.' },
+            { time: '09:30 AM', title: 'Tiệc Trà Chỉ Dẫn', icon: Utensils, description: 'Mời trầu cau và bánh kẹo trước khi đưa dâu.' },
+        ]
+    }
+};
 
-const brideEvents = [
-    { time: '08:30 AM', title: 'Welcome Guests (Bride)', icon: Heart, description: 'Guests arrive at Bride\'s house.' },
-    { time: '10:30 AM', title: 'Welcome Groom', icon: Home, description: 'Welcoming the Groom\'s family.' },
-    { time: '11:00 AM', title: 'The Ceremony', icon: Heart, description: 'Official wedding ceremony.' },
-    { time: '12:00 PM', title: 'Lunch Reception', icon: Utensils, description: 'Main reception lunch.' },
-    { time: '02:00 PM', title: 'Photo Session', icon: Camera, description: 'Photoshoot with the couple.' },
-];
-
-export default function Timeline() {
-    const [activeTab, setActiveTab] = useState('groom');
-    const events = activeTab === 'groom' ? groomEvents : brideEvents;
+const TimelineItem = ({ event, index, isEven }) => {
+    const Icon = event.icon;
 
     return (
-        <section id="timeline" className="py-20 md:py-32 bg-gradient-to-b from-white to-rose-50/30 overflow-hidden">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-                {/* Background Decoration */}
-                <div className="absolute top-0 left-0 w-64 h-64 bg-rose-200/20 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 mix-blend-multiply pointer-events-none" />
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-rose-100/30 rounded-full blur-3xl translate-y-1/3 translate-x-1/3 mix-blend-multiply pointer-events-none" />
+        <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className={`relative flex items-center justify-between md:justify-center mb-4 md:mb-8 w-full ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'
+                }`}
+        >
+            {/* Empty space for alternating layout on desktop */}
+            <div className="hidden md:block w-5/12" />
 
-                <div className="text-center mb-12 md:mb-16 relative z-10">
+            {/* Central Line Icon */}
+            <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 flex items-center justify-center">
+                <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-white border-2 md:border-4 border-rose-100 shadow-sm flex items-center justify-center z-10">
+                    <Icon className="w-3 h-3 md:w-3.5 md:h-3.5 text-rose-500" />
+                </div>
+            </div>
+
+            {/* Content Card */}
+            <div className={`w-[calc(100%-3rem)] ml-10 md:ml-0 md:w-5/12 ${isEven ? 'md:pr-6 md:text-right' : 'md:pl-6 md:text-left'
+                }`}>
+                <div className="bg-white p-3 md:p-4 rounded-lg shadow-sm border border-rose-50 hover:shadow-md transition-shadow duration-300 relative group">
+                    {/* Time Badge */}
+                    <div className={`absolute -top-2.5 ${isEven ? 'md:right-4 left-4 md:left-auto' : 'left-4'
+                        }`}>
+                        <span className="px-2 py-0.5 rounded-full bg-rose-500 text-white text-[10px] font-bold shadow-sm shadow-rose-200">
+                            {event.time}
+                        </span>
+                    </div>
+
+                    <div className="mt-1.5">
+                        <h3 className="text-base font-serif font-semibold text-gray-800 mb-0.5 group-hover:text-rose-600 transition-colors">
+                            {event.title}
+                        </h3>
+                        <p className="text-gray-600 font-sans text-[11px] md:text-xs leading-relaxed font-light">
+                            {event.description}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </motion.div>
+    );
+};
+
+export default function Timeline() {
+    const [activeTab, setActiveTab] = useState('jan12');
+    const [weddingSide, setWeddingSide] = useState('groom');
+
+    const currentData = SCHEDULE_DATA[activeTab];
+    const events = activeTab === 'jan12'
+        ? (weddingSide === 'groom' ? currentData.groomEvents : currentData.brideEvents)
+        : currentData.events;
+
+    return (
+        <section id="timeline" className="py-12 md:py-20 bg-stone-50 overflow-hidden relative">
+            {/* Decorative Background */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-rose-100/20 rounded-full blur-3xl opacity-50" />
+            </div>
+
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                {/* Header */}
+                <div className="text-center mb-8 md:mb-12">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-3xl md:text-6xl font-serif text-gray-800 mb-4 md:mb-6 tracking-tight">
-                            Wedding Schedule
-                        </h2>
-                        <div className="flex items-center justify-center gap-2 md:gap-3 mb-2 md:mb-3">
-                            <span className="h-px w-8 md:w-12 bg-rose-300"></span>
-                            <p className="text-xl md:text-2xl text-rose-500 font-serif italic">January 11, 2026</p>
-                            <span className="h-px w-8 md:w-12 bg-rose-300"></span>
+                        <span className="text-rose-500 font-script text-2xl md:text-3xl mb-2 block transform -rotate-2">
+                            Hành Trình Tình Yêu
+                        </span>
+                        <h2 className="text-3xl md:text-5xl font-serif text-gray-800 mb-6 tracking-tight">Chương Trình Lễ Cưới</h2>
+
+                        {/* Day Tabs */}
+                        <div className="inline-flex flex-wrap justify-center gap-1.5 bg-white p-1 rounded-full shadow-md border border-gray-100 scale-90 md:scale-100">
+                            {[
+                                { id: 'jan10', label: '10/01', sub: 'Đính Hôn' },
+                                { id: 'jan11', label: '11/01', sub: 'Tiệc Cưới' },
+                                { id: 'jan12', label: '12/01', sub: 'Thành Hôn' },
+                            ].map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`px-4 py-1.5 md:py-2 rounded-full transition-all duration-300 flex flex-col items-center min-w-[80px] ${activeTab === tab.id
+                                        ? 'bg-rose-500 text-white shadow-sm'
+                                        : 'hover:bg-rose-50 text-gray-500 hover:text-rose-600'
+                                        }`}
+                                >
+                                    <span className={`text-xs md:text-sm font-serif font-bold leading-none mb-0.5`}>
+                                        {tab.label}
+                                    </span>
+                                    <span className={`text-[9px] uppercase font-medium mt-0.5 ${activeTab === tab.id ? 'opacity-90' : 'opacity-60'}`}>
+                                        {tab.sub}
+                                    </span>
+                                </button>
+                            ))}
                         </div>
-                        <p className="text-gray-500 font-light tracking-widest uppercase text-[10px] md:text-sm">A Day of Love & Celebration</p>
                     </motion.div>
                 </div>
 
-                {/* Tab Navigation */}
-                <div className="flex justify-center mb-12 md:mb-20 relative z-10">
-                    <div className="inline-flex bg-white/50 backdrop-blur-sm p-1 md:p-1.5 rounded-full shadow-lg border border-white/60">
-                        {['groom', 'bride'].map((tab) => (
-                            <button
-                                key={tab}
-                                onClick={() => setActiveTab(tab)}
-                                className={`relative px-4 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-sm font-medium transition-colors duration-300 min-w-[120px] md:min-w-[160px] ${activeTab === tab ? 'text-white' : 'text-gray-600 hover:text-rose-600'
-                                    }`}
-                            >
-                                {activeTab === tab && (
-                                    <motion.div
-                                        layoutId="activeTab"
-                                        className="absolute inset-0 bg-gradient-to-r from-rose-500 to-rose-400 rounded-full shadow-md"
-                                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                                    />
-                                )}
-                                <span className="relative z-10 flex items-center justify-center gap-2">
-                                    {tab === 'groom' ? "Groom's Family" : "Bride's Family"}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                {/* Sub-tabs for Wedding Day */}
+                {activeTab === 'jan12' && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="flex justify-center mb-8 md:mb-12"
+                    >
+                        <div className="bg-white/80 p-0.5 rounded-lg shadow-sm border border-rose-100 flex gap-0.5 scale-90 md:scale-100">
+                            {['groom', 'bride'].map((side) => (
+                                <button
+                                    key={side}
+                                    onClick={() => setWeddingSide(side)}
+                                    className={`px-4 py-1.5 rounded-md text-xs font-medium transition-all ${weddingSide === side
+                                        ? 'bg-rose-100 text-rose-700 shadow-sm'
+                                        : 'text-gray-500 hover:bg-rose-50'
+                                        }`}
+                                >
+                                    {side === 'groom' ? 'Nhà Trai' : 'Nhà Gái'}
+                                </button>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
 
-                <div className="relative min-h-[500px] md:min-h-[600px] z-10">
+                {/* Vertical Timeline */}
+                <div className="relative">
                     {/* Vertical Line */}
-                    <div className="absolute left-6 md:left-1/2 transform -translate-x-1/2 h-full w-px">
-                        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-rose-300 to-transparent opacity-60" />
-                    </div>
+                    <div className="absolute left-8 md:left-1/2 top-4 bottom-4 w-0.5 bg-gradient-to-b from-rose-200 via-rose-300 to-rose-200 md:-translate-x-1/2" />
 
-                    <div className="space-y-8 md:space-y-16">
+                    <div className="space-y-4">
                         <AnimatePresence mode="wait">
                             <motion.div
-                                key={activeTab}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.5 }}
-                                className="space-y-8 md:space-y-16"
+                                key={`${activeTab}-${weddingSide}`}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.3 }}
                             >
-                                {events.map((event, index) => {
-                                    const Icon = event.icon;
-                                    const isEven = index % 2 === 0;
-
-                                    return (
-                                        <motion.div
-                                            key={`${activeTab}-${index}`}
-                                            initial={{ opacity: 0, y: 50 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true, margin: "-50px" }}
-                                            transition={{ duration: 0.7, delay: index * 0.1, type: "spring", bounce: 0.4 }}
-                                            className={`relative flex md:items-center md:justify-between ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'
-                                                }`}
-                                        >
-                                            {/* Content Card */}
-                                            <div className={`w-full md:w-5/12 pl-12 md:pl-0 ${isEven ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'}`}>
-                                                <div className="group relative">
-                                                    <div className={`hidden md:block absolute top-0 ${isEven ? '-right-2' : '-left-2'} w-2 h-full bg-rose-500/0 group-hover:bg-rose-500/10 transition-colors duration-300 rounded${isEven ? '-l' : '-r'}-lg`} />
-
-                                                    <div className={`inline-flex items-center gap-2 text-rose-500 font-semibold mb-1.5 md:mb-2 ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'
-                                                        }`}>
-                                                        <div className="px-2 md:px-3 py-0.5 md:py-1 rounded-full bg-rose-50 border border-rose-100 flex items-center gap-1.5 shadow-sm">
-                                                            <Clock className="w-3 md:w-3.5 h-3 md:h-3.5" />
-                                                            <span className="text-xs md:text-sm tracking-wide">{event.time}</span>
-                                                        </div>
-                                                    </div>
-
-                                                    <h3 className="text-lg md:text-2xl font-serif text-gray-800 mb-1 md:mb-2 group-hover:text-rose-600 transition-colors duration-300">
-                                                        {event.title}
-                                                    </h3>
-                                                    <p className="text-gray-500 font-light leading-relaxed text-xs md:text-base">
-                                                        {event.description}
-                                                    </p>
-                                                </div>
-                                            </div>
-
-                                            {/* Center Icon (Desktop) / Left Line Icon (Mobile) */}
-                                            <div className="absolute left-6 top-0 md:left-1/2 transform -translate-x-1/2 flex items-center justify-center h-full md:h-auto">
-                                                {/* Desktop Icon */}
-                                                <div className="relative w-14 h-14 hidden md:flex items-center justify-center">
-                                                    <motion.div
-                                                        animate={{ scale: [1, 1.2, 1] }}
-                                                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.5 }}
-                                                        className="absolute inset-0 bg-rose-100 rounded-full opacity-50"
-                                                    />
-                                                    <div className="relative w-12 h-12 bg-white border border-rose-200 rounded-full flex items-center justify-center shadow-lg z-10 group hover:border-rose-400 transition-colors duration-300">
-                                                        <Icon className="w-5 h-5 text-rose-500 group-hover:text-rose-600 transition-colors duration-300" />
-                                                    </div>
-                                                </div>
-
-                                                {/* Mobile Dot/Icon */}
-                                                <div className="md:hidden absolute top-0 w-8 h-8 bg-white border-2 border-rose-400 rounded-full z-10 shadow-md flex items-center justify-center -translate-x-1/2">
-                                                    <Icon className="w-4 h-4 text-rose-500" />
-                                                </div>
-                                            </div>
-
-                                            {/* Empty Space - Hidden on Mobile */}
-                                            <div className="hidden md:block w-5/12" />
-                                        </motion.div>
-                                    );
-                                })}
+                                {events.map((event, index) => (
+                                    <TimelineItem key={index} event={event} index={index} isEven={index % 2 === 0} />
+                                ))}
                             </motion.div>
                         </AnimatePresence>
                     </div>
                 </div>
+
+                {/* Menu Section for Banquet */}
+                {activeTab === 'jan11' && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="mt-10 md:mt-12 max-w-4xl mx-auto"
+                    >
+                        <div className="bg-white rounded-[1.5rem] shadow-lg border border-rose-100 overflow-hidden relative">
+                            {/* Decorative header bg */}
+                            <div className="h-16 bg-rose-50 flex items-center justify-center relative overflow-hidden">
+                                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
+                                <div className="text-center z-10">
+                                    <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center mx-auto mb-1.5 shadow-sm">
+                                        <Utensils className="w-5 h-5 text-rose-500" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="p-6 md:p-8 text-center">
+                                <h3 className="text-3xl font-script text-gray-800 mb-6 border-b border-rose-100 pb-3 inline-block px-8">
+                                    Thực Đơn Nhà Trai
+                                </h3>
+
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-3 text-left">
+                                    {currentData.menu.map((item, index) => (
+                                        <div key={index} className="flex items-center gap-2 py-1.5 border-b border-dashed border-gray-100 last:border-0 md:border-b-0">
+                                            <span className="text-rose-400 font-script text-xl w-6 shrink-0">{index + 1}.</span>
+                                            <span className="text-gray-700 font-sans text-sm">{item}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="mt-8 pt-6 border-t border-rose-50 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6">
+                                    <span className="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest font-bold">Đồ Uống</span>
+                                    <div className="flex flex-wrap justify-center gap-2">
+                                        <span className="px-3 py-1 bg-rose-50 text-rose-600 rounded-full text-xs font-medium border border-rose-100">Cam Tươi</span>
+                                        <span className="px-3 py-1 bg-sky-50 text-sky-600 rounded-full text-xs font-medium border border-sky-100">Nước Ngọt</span>
+                                        <span className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-xs font-medium border border-gray-100">Nước Lọc</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
             </div>
         </section>
     );

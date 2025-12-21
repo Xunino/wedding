@@ -20,11 +20,11 @@ const BankCard = ({ title, name, bank, number, qrData, color }) => (
 
             <div className={`space-y-2 rounded-xl p-3 ${color === 'rose' ? 'bg-rose-50' : 'bg-sky-50'}`}>
                 <div className="flex items-center justify-between">
-                    <span className="text-gray-500 text-xs">Bank</span>
+                    <span className="text-gray-500 text-xs">Ngân hàng</span>
                     <span className={`font-semibold text-sm ${color === 'rose' ? 'text-rose-700' : 'text-sky-700'}`}>{bank}</span>
                 </div>
                 <div className="flex items-center justify-between group cursor-pointer" onClick={() => navigator.clipboard.writeText(number)}>
-                    <span className="text-gray-500 text-xs">Account No.</span>
+                    <span className="text-gray-500 text-xs">Số tài khoản</span>
                     <div className="flex items-center gap-1.5">
                         <span className={`font-semibold text-sm ${color === 'rose' ? 'text-rose-700' : 'text-sky-700'}`}>{number}</span>
                         <Copy className="w-3 h-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -41,15 +41,15 @@ export default function Gift() {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-8 md:mb-12">
                     <Heart className="w-8 h-8 md:w-10 md:h-10 text-rose-500 fill-current mx-auto mb-3 animate-pulse" />
-                    <h2 className="text-3xl md:text-4xl font-serif text-gray-800 mb-3">Wedding Gift</h2>
+                    <h2 className="text-3xl md:text-5xl font-serif text-gray-800 mb-3">Mừng Cưới</h2>
                     <p className="text-gray-500 max-w-xl mx-auto leading-relaxed text-sm md:text-base">
-                        Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, a contribution would be very welcome.
+                        Sự hiện diện của quý khách là món quà ý nghĩa nhất. Tuy nhiên nếu quý khách muốn gửi quà mừng, xin vui lòng gửi qua thông tin dưới đây.
                     </p>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-w-2xl mx-auto">
                     <BankCard
-                        title="The Bride"
+                        title="Cô Dâu"
                         name="Nguyễn Thu Thủy"
                         bank="TPBank"
                         number="0060 6386 001"
@@ -57,7 +57,7 @@ export default function Gift() {
                         color="rose"
                     />
                     <BankCard
-                        title="The Groom"
+                        title="Chú Rể"
                         name="Nguyễn Đức Linh"
                         bank="TPBank"
                         number="2842 2031 998"

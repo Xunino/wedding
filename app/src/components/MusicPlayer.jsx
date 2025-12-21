@@ -66,15 +66,15 @@ export default function MusicPlayer() {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 className={`flex items-center gap-3 pl-4 pr-2 py-2 rounded-full shadow-lg border border-white/20 transition-all duration-300 backdrop-blur-md ${isPlaying
-                        ? 'bg-rose-500/90 text-white shadow-rose-200/50'
-                        : 'bg-white/90 text-gray-800 hover:bg-white'
+                    ? 'bg-rose-500/90 text-white shadow-rose-200/50'
+                    : 'bg-white/90 text-gray-800 hover:bg-white'
                     }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
             >
                 <div className="hidden md:flex flex-col items-start mr-2">
                     <span className="text-xs font-medium uppercase tracking-wider opacity-80">
-                        {isPlaying ? 'Playing' : 'Paused'}
+                        {isPlaying ? 'Đang phát' : 'Tạm dừng'}
                     </span>
                     <span className="text-xs font-bold whitespace-nowrap">
                         Hơn Cả Yêu

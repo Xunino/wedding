@@ -38,7 +38,7 @@ const WEDDING_DETAILS = {
     brideMotherName: 'Phạm Thị Hà',
     brideDetailAddress: 'Rạp Kim Mâu, Năm Dân',
     brideAddress: 'Kim Sơn, Ninh Bình, Việt Nam',
-    brideDescription: "A soul who finds magic in the simplest things, she carries a radiant smile that brightens every day. To Thủy, happiness isn’t a destination, but the peaceful joy of sharing life’s most meaningful moments with the one she loves.",
+    brideDescription: "Một tâm hồn tìm thấy phép màu từ những điều bình dị nhất, cô mang theo nụ cười rạng rỡ thắp sáng mọi ngày. Với Thủy, hạnh phúc không phải là đích đến, mà là niềm vui bình yên khi sẻ chia những khoảnh khắc ý nghĩa nhất của cuộc đời cùng người mình yêu.",
     brideImage: getImage('HERO0164.JPG'), // Fallback to first image if specific one not found
 
     groomName: 'Đức Linh',
@@ -46,7 +46,7 @@ const WEDDING_DETAILS = {
     groomMotherName: 'Bùi Thị Phóng',
     groomDetailAddress: 'Số 7 Ngách 6 Ngõ 132 Đường Đinh Điền',
     groomAddress: 'Hoa Lư, Ninh Bình, Việt Nam',
-    groomDescription: "Sincere, warm, and a constant pillar of optimism. For Linh, life is a beautiful adventure, and the greatest gift is finding the perfect partner to write a new chapter filled with laughter, growth, and endless love.",
+    groomDescription: "Chân thành, ấm áp và luôn là chỗ dựa vững chắc của sự lạc quan. Với Linh, cuộc sống là một cuộc phiêu lưu tươi đẹp, và món quà lớn nhất là tìm được người bạn đời hoàn hảo để cùng viết nên chương mới tràn ngập tiếng cười, sự trưởng thành và tình yêu bất tận.",
     groomImage: getImage('HERO0332.JPG'), // Fallback to first image if specific one not found
 
     weddingDate: new Date('2026-01-12T09:00:00'),
@@ -69,7 +69,7 @@ const WEDDING_PHOTOS = Object.entries(largeValues).map(([path, full], index) => 
         thumb: thumbValues[thumbPath] || galleryThumbs[index % galleryThumbs.length],
         full: full,
         category: category,
-        title: `Wedding Moment ${index + 1}`
+        title: `Khoảnh Khắc Cưới ${index + 1}`
     };
 });
 
@@ -87,7 +87,7 @@ function App() {
             <div className="fixed inset-0 bg-rose-50 flex items-center justify-center z-50">
                 <div className="text-center">
                     <div className="w-16 h-16 border-4 border-rose-200 border-t-rose-500 rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="text-rose-500 font-serif text-xl animate-pulse">Loading Love Story...</p>
+                    <p className="text-rose-500 font-serif text-xl animate-pulse">Đang tải Câu Chuyện Tình Yêu...</p>
                 </div>
             </div>
         );
