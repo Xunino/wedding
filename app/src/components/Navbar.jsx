@@ -88,7 +88,7 @@ export default function Navbar() {
                             viewBox="0 3 24 24"
                         />
                         <span className={`font-script text-xl md:text-2xl transition-colors duration-300 ${isScrolled || isMobileMenuOpen ? 'text-rose-900' : 'text-rose-900 md:text-white'}`}>
-                            T & L
+                            L & T
                         </span>
                     </div>
 
