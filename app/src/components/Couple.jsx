@@ -70,7 +70,7 @@ const CoupleProfile = ({ fatherName, motherName, address, name, role, image, des
                         {description}
                     </p>
 
-                    <div className="space-y-3 md:space-y-4 ${isLeft ? 'items-center md:items-start' : 'items-center md:items-end'} flex flex-col">
+                    <div className={`space-y-3 md:space-y-4 items-center ${isLeft ? 'md:items-start' : 'md:items-end'} flex flex-col`}>
                         <div className="flex items-center gap-3 text-gray-600 bg-white md:bg-white/50 md:backdrop-blur-sm p-2.5 md:p-3 rounded-xl border border-rose-100 shadow-sm w-fit max-w-full">
                             <Users className="w-4 h-4 md:w-5 md:h-5 text-rose-400 shrink-0" />
                             <div className="text-left">
