@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Send, Check, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import brideMap from '../../images/large/HERO9809.JPG';
+import brideMap from '../../images/large/HERO0878.JPG';
 
 // Initial wedding wishes
 const INITIAL_WISHES = [
@@ -225,11 +225,11 @@ export default function RSVP() {
             <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
                 <div className="bg-white/95 md:backdrop-blur-xl rounded-[2rem] shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/60">
                     {/* Image Side */}
-                    <div className="md:w-[40%] bg-rose-100 relative min-h-[180px] md:min-h-[450px] overflow-hidden group">
+                    <div className="md:w-[40%] bg-rose-100 relative min-h-[280px] md:min-h-[450px] overflow-hidden group">
                         <img
                             src={brideMap}
-                            alt="Location Map"
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105"
+                            alt="Celebration"
+                            className="absolute inset-0 w-full h-full object-cover object-[center_25%] transition-transform duration-[2s] group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-rose-900/60 via-transparent to-transparent flex items-end justify-center pb-6 md:pb-10">
                             <h3 className="text-2xl md:text-4xl font-script text-white drop-shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
