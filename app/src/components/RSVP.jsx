@@ -204,7 +204,7 @@ export default function RSVP() {
     };
 
     return (
-        <section id="rsvp" className="py-12 md:py-32 bg-stone-50 relative overflow-hidden min-h-screen flex items-center">
+        <section id="rsvp" className="py-10 md:py-20 bg-stone-50 relative overflow-hidden flex items-center">
             {/* Premium Dynamic Background */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-rose-50 via-stone-50 to-stone-100 pointer-events-none" />
 
@@ -225,7 +225,7 @@ export default function RSVP() {
             <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
                 <div className="bg-white/95 md:backdrop-blur-xl rounded-[2rem] shadow-2xl overflow-hidden flex flex-col md:flex-row border border-white/60">
                     {/* Image Side */}
-                    <div className="md:w-[45%] bg-rose-100 relative min-h-[250px] md:min-h-[550px] overflow-hidden group">
+                    <div className="md:w-[40%] bg-rose-100 relative min-h-[180px] md:min-h-[450px] overflow-hidden group">
                         <img
                             src={brideMap}
                             alt="Location Map"
@@ -239,15 +239,15 @@ export default function RSVP() {
                     </div>
 
                     {/* Form Side */}
-                    <div className="md:w-[55%] p-6 sm:p-8 md:p-10 bg-gradient-to-br from-white to-rose-50/30">
-                        <div className="text-center mb-6 md:mb-10">
-                            <div className="flex items-center justify-center gap-2 md:gap-3 mb-2 md:mb-3">
-                                <span className="h-[1px] w-8 md:w-10 bg-rose-300"></span>
-                                <span className="text-rose-500 uppercase tracking-[0.2em] md:tracking-[0.25em] text-[10px] md:text-sm font-bold">Celebration</span>
-                                <span className="h-[1px] w-8 md:w-10 bg-rose-300"></span>
+                    <div className="md:w-[60%] p-5 sm:p-6 md:p-8 bg-gradient-to-br from-white to-rose-50/30">
+                        <div className="text-center mb-4 md:mb-6">
+                            <div className="flex items-center justify-center gap-2 mb-1.5 md:mb-2">
+                                <span className="h-[1px] w-6 md:w-8 bg-rose-300"></span>
+                                <span className="text-rose-500 uppercase tracking-[0.2em] text-[9px] md:text-xs font-bold">Celebration</span>
+                                <span className="h-[1px] w-6 md:w-8 bg-rose-300"></span>
                             </div>
-                            <h2 className="text-4xl md:text-6xl font-serif text-gray-800 mb-2 md:mb-4">RSVP</h2>
-                            <p className="text-gray-500 text-sm md:text-base font-light">We would love to have you with us.<br />Please confirm below.</p>
+                            <h2 className="text-3xl md:text-4xl font-serif text-gray-800 mb-1 md:mb-2">RSVP</h2>
+                            <p className="text-gray-500 text-xs md:text-sm font-light">We would love to have you with us.<br />Please confirm below.</p>
                         </div>
 
                         {isSubmitted ? (
@@ -264,13 +264,13 @@ export default function RSVP() {
                                 <p className="text-gray-400 text-xs md:text-sm mt-6 md:mt-8 font-medium tracking-wide">WE CAN'T WAIT TO SEE YOU!</p>
                             </motion.div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
+                            <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
                                 <div>
                                     <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 ml-1">Your Name</label>
                                     <input
                                         type="text"
                                         required
-                                        className="w-full px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl bg-stone-50/50 border border-stone-100 focus:border-rose-300 focus:ring-4 focus:ring-rose-100/50 outline-none transition-all duration-300 placeholder-gray-300 text-sm md:text-base"
+                                        className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-xl bg-stone-50/50 border border-stone-100 focus:border-rose-300 focus:ring-2 focus:ring-rose-100/50 outline-none transition-all duration-300 placeholder-gray-300 text-sm"
                                         value={formState.name}
                                         onChange={e => setFormState({ ...formState, name: e.target.value })}
                                         placeholder="Type your full name"
@@ -285,7 +285,7 @@ export default function RSVP() {
                                         <input
                                             type="tel"
                                             required
-                                            className="w-full px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl bg-stone-50/50 border border-stone-100 focus:border-rose-300 focus:ring-4 focus:ring-rose-100/50 outline-none transition-all duration-300 placeholder-gray-300 text-sm md:text-base"
+                                            className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-xl bg-stone-50/50 border border-stone-100 focus:border-rose-300 focus:ring-2 focus:ring-rose-100/50 outline-none transition-all duration-300 placeholder-gray-300 text-sm"
                                             value={formState.phone}
                                             onChange={e => setFormState({ ...formState, phone: e.target.value.replace(/\D/g, '') })}
                                             placeholder="0912 345 678"
@@ -296,7 +296,7 @@ export default function RSVP() {
                                         <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 ml-1">Guests</label>
                                         <div className="relative">
                                             <select
-                                                className="w-full px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl bg-stone-50/50 border border-stone-100 focus:border-rose-300 focus:ring-4 focus:ring-rose-100/50 outline-none transition-all duration-300 appearance-none cursor-pointer text-sm md:text-base pr-10"
+                                                className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-xl bg-stone-50/50 border border-stone-100 focus:border-rose-300 focus:ring-2 focus:ring-rose-100/50 outline-none transition-all duration-300 appearance-none cursor-pointer text-sm pr-10"
                                                 value={formState.guests}
                                                 onChange={e => setFormState({ ...formState, guests: e.target.value })}
                                             >
@@ -315,7 +315,7 @@ export default function RSVP() {
                                     <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 md:mb-2 ml-1">Wishes</label>
                                     <textarea
                                         rows="2"
-                                        className="w-full px-4 md:px-5 py-3 md:py-4 rounded-xl md:rounded-2xl bg-stone-50/50 border border-stone-100 focus:border-rose-300 focus:ring-4 focus:ring-rose-100/50 outline-none transition-all duration-300 placeholder-gray-300 resize-none text-sm md:text-base"
+                                        className="w-full px-3 md:px-4 py-2.5 md:py-3 rounded-xl bg-stone-50/50 border border-stone-100 focus:border-rose-300 focus:ring-2 focus:ring-rose-100/50 outline-none transition-all duration-300 placeholder-gray-300 resize-none text-sm"
                                         value={formState.message}
                                         onChange={e => setFormState({ ...formState, message: e.target.value })}
                                         placeholder="Send your warmest wishes..."
@@ -324,7 +324,7 @@ export default function RSVP() {
 
                                 <button
                                     type="submit"
-                                    className="w-full py-4 md:py-5 bg-gradient-to-r from-rose-400 to-rose-600 text-white rounded-xl md:rounded-2xl font-bold tracking-wider hover:from-rose-500 hover:to-rose-700 transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 shadow-xl shadow-rose-200/80 transform hover:-translate-y-1 active:translate-y-0 text-base md:text-lg uppercase"
+                                    className="w-full py-3 md:py-4 bg-gradient-to-r from-rose-400 to-rose-600 text-white rounded-xl font-bold tracking-wider hover:from-rose-500 hover:to-rose-700 transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-rose-200/80 transform hover:-translate-y-0.5 active:translate-y-0 text-sm md:text-base uppercase"
                                 >
                                     <Send className="w-4 h-4 md:w-5 md:h-5" />
                                     <span>CONFIRM ATTENDANCE</span>

@@ -2,30 +2,31 @@ import React from 'react';
 import { Heart, Copy } from 'lucide-react';
 
 const BankCard = ({ title, name, bank, number, qrData, color }) => (
-    <div className={`bg-white rounded-3xl shadow-xl overflow-hidden border-2 ${color === 'rose' ? 'border-rose-100' : 'border-blue-100'} transform hover:scale-105 transition-all duration-300`}>
-        <div className={`py-6 px-6 text-center ${color === 'rose' ? 'bg-gradient-to-r from-rose-400 to-pink-400' : 'bg-gradient-to-r from-blue-400 to-indigo-400'} text-white`}>
-            <h3 className="text-2xl font-script mb-1">{title}</h3>
-            <p className="text-2xl font-bold">{name}</p>
+    <div className={`bg-white rounded-2xl shadow-lg overflow-hidden border ${color === 'rose' ? 'border-rose-200' : 'border-sky-200'} transform hover:scale-[1.02] transition-all duration-300`}>
+        <div className={`py-4 px-4 text-center ${color === 'rose' ? 'bg-gradient-to-r from-rose-400 to-rose-500' : 'bg-gradient-to-r from-sky-400 to-sky-500'} text-white`}>
+            <h3 className="text-lg font-script mb-0.5">{title}</h3>
+            <p className="text-lg font-bold">{name}</p>
         </div>
 
-        <div className="p-8">
-            <div className="aspect-square rounded-2xl flex items-center justify-center mb-6 bg-gray-50 border border-gray-100 p-4">
+        <div className="p-4 md:p-5">
+            <div className={`aspect-square rounded-xl flex items-center justify-center mb-4 ${color === 'rose' ? 'bg-rose-50/50 border-rose-100' : 'bg-sky-50/50 border-sky-100'} border p-3 max-w-[180px] md:max-w-[200px] mx-auto`}>
                 <img
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${qrData}`}
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${qrData}`}
                     alt={`QR ${name}`}
-                    className="w-full h-full object-contain mix-blend-multiply"
+                    className="w-full h-full object-contain"
+                    loading="lazy"
                 />
             </div>
 
-            <div className={`space-y-3 rounded-xl p-4 ${color === 'rose' ? 'bg-rose-50' : 'bg-blue-50'}`}>
+            <div className={`space-y-2 rounded-xl p-3 ${color === 'rose' ? 'bg-rose-50' : 'bg-sky-50'}`}>
                 <div className="flex items-center justify-between">
-                    <span className="text-gray-600 text-sm">Bank</span>
-                    <span className={`font-semibold ${color === 'rose' ? 'text-rose-700' : 'text-blue-700'}`}>{bank}</span>
+                    <span className="text-gray-500 text-xs">Bank</span>
+                    <span className={`font-semibold text-sm ${color === 'rose' ? 'text-rose-700' : 'text-sky-700'}`}>{bank}</span>
                 </div>
                 <div className="flex items-center justify-between group cursor-pointer" onClick={() => navigator.clipboard.writeText(number)}>
-                    <span className="text-gray-600 text-sm">Account No.</span>
-                    <div className="flex items-center gap-2">
-                        <span className={`font-semibold ml-auto ${color === 'rose' ? 'text-rose-700' : 'text-blue-700'}`}>{number}</span>
+                    <span className="text-gray-500 text-xs">Account No.</span>
+                    <div className="flex items-center gap-1.5">
+                        <span className={`font-semibold text-sm ${color === 'rose' ? 'text-rose-700' : 'text-sky-700'}`}>{number}</span>
                         <Copy className="w-3 h-3 text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                 </div>
@@ -36,17 +37,17 @@ const BankCard = ({ title, name, bank, number, qrData, color }) => (
 
 export default function Gift() {
     return (
-        <section id="gift" className="py-20 md:py-32 bg-white">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                    <Heart className="w-12 h-12 text-rose-500 fill-current mx-auto mb-4 animate-pulse" />
-                    <h2 className="text-4xl md:text-5xl font-serif text-gray-800 mb-4">Wedding Gift</h2>
-                    <p className="text-gray-500 max-w-2xl mx-auto leading-relaxed">
-                        Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, a cash contribution would be very welcome.
+        <section id="gift" className="py-12 md:py-24 bg-gradient-to-b from-white to-rose-50/30">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-8 md:mb-12">
+                    <Heart className="w-8 h-8 md:w-10 md:h-10 text-rose-500 fill-current mx-auto mb-3 animate-pulse" />
+                    <h2 className="text-3xl md:text-4xl font-serif text-gray-800 mb-3">Wedding Gift</h2>
+                    <p className="text-gray-500 max-w-xl mx-auto leading-relaxed text-sm md:text-base">
+                        Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, a contribution would be very welcome.
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 md:gap-16 max-w-4xl mx-auto">
+                <div className="grid grid-cols-2 gap-4 md:gap-8 max-w-2xl mx-auto">
                     <BankCard
                         title="The Bride"
                         name="Nguyễn Thu Thủy"
@@ -61,7 +62,7 @@ export default function Gift() {
                         bank="TPBank"
                         number="2842 2031 998"
                         qrData="0002010102111531397007040052044600002842203199838550010A000000727012500069704230111284220319980208QRIBFTTA5204513753037045802VN5915NGUYEN DUC LINH6006Ha Noi8707CLASSIC630457E3"
-                        color="blue"
+                        color="sky"
                     />
                 </div>
             </div>
