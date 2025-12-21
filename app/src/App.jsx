@@ -38,7 +38,7 @@ const WEDDING_DETAILS = {
     brideMotherName: 'Phạm Thị Hà',
     brideDetailAddress: 'Rạp Kim Mâu, Năm Dân',
     brideAddress: 'Kim Sơn, Ninh Bình, Việt Nam',
-    brideDescription: "Gentle and warm, she loves the simple little things in life and always believes in the magic of true love.",
+    brideDescription: "A soul who finds magic in the simplest things, she carries a radiant smile that brightens every day. To Thủy, happiness isn’t a destination, but the peaceful joy of sharing life’s most meaningful moments with the one she loves.",
     brideImage: getImage('HERO0164.JPG'), // Fallback to first image if specific one not found
 
     groomName: 'Đức Linh',
@@ -46,7 +46,7 @@ const WEDDING_DETAILS = {
     groomMotherName: 'Bùi Thị Phóng',
     groomDetailAddress: 'Số 7 Ngách 6 Ngõ 132 Đường Đinh Điền',
     groomAddress: 'Hoa Lư, Ninh Bình, Việt Nam',
-    groomDescription: "Mature and sincere. For him, happiness is simply walking together and sharing every moment with the one he loves.",
+    groomDescription: "Sincere, warm, and a constant pillar of optimism. For Linh, life is a beautiful adventure, and the greatest gift is finding the perfect partner to write a new chapter filled with laughter, growth, and endless love.",
     groomImage: getImage('HERO0332.JPG'), // Fallback to first image if specific one not found
 
     weddingDate: new Date('2026-01-12T09:00:00'),

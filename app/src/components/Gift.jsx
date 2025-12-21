@@ -47,7 +47,7 @@ export default function Gift() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4 md:gap-8 max-w-2xl mx-auto">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-w-2xl mx-auto">
                     <BankCard
                         title="The Bride"
                         name="Nguyễn Thu Thủy"
