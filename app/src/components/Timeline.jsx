@@ -28,15 +28,16 @@ const SCHEDULE_DATA = {
             { time: '21:00 PM', title: 'Cảm Ơn', icon: Sparkles, description: 'Cặp đôi gửi lời cảm ơn đến quý quan khách.' },
         ],
         menu: [
-            'Gà hấp lá chanh',
-            'Canh mọc thập cẩm',
-            'Thịt dê hấp',
-            'Tôm chiên hoàng bào',
-            'Thịt lợn chao',
-            'Bò sốt tiêu mịn',
-            'Xôi nếp đậu xanh',
-            'Bò xào cần tỏi',
-            'Rau củ luộc',
+            'Thịt Gà',
+            'Thịt Dê Hấp',
+            'Tôm Chiên',
+            'Thịt Lợn Chao',
+            'Bò Sốt Tiêu',
+            'Xào Bò',
+            'Nộm',
+            'Rau Củ Luộc',
+            'Xôi Đậu',
+            'Canh Mọc',
         ]
     },
     'jan12': {
@@ -244,9 +245,9 @@ export default function Timeline() {
                                 <div className="mt-8 pt-6 border-t border-rose-50 flex flex-col md:flex-row items-center justify-center gap-3 md:gap-6">
                                     <span className="text-[10px] md:text-xs text-gray-400 uppercase tracking-widest font-bold">Đồ Uống</span>
                                     <div className="flex flex-wrap justify-center gap-2">
-                                        <span className="px-3 py-1 bg-rose-50 text-rose-600 rounded-full text-xs font-medium border border-rose-100">Cam Tươi</span>
-                                        <span className="px-3 py-1 bg-sky-50 text-sky-600 rounded-full text-xs font-medium border border-sky-100">Nước Ngọt</span>
-                                        <span className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-xs font-medium border border-gray-100">Nước Lọc</span>
+                                        <span className="px-3 py-1 bg-rose-50 text-rose-600 rounded-full text-xs font-medium border border-rose-100">Rượu quê</span>
+                                        <span className="px-3 py-1 bg-sky-50 text-sky-600 rounded-full text-xs font-medium border border-sky-100">Nước ngọt</span>
+                                        <span className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-xs font-medium border border-gray-100">Nước lọc</span>
                                     </div>
                                 </div>
                             </div>
