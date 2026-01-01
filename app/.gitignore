@@ -40,3 +40,6 @@ coverage
 # Vite
 vite.config.js.timestamp-*
 *.tsbuildinfo
+
+# Images
+./app/images/original/*

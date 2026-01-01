@@ -17,8 +17,8 @@ import GrainOverlay from './components/GrainOverlay';
 
 
 // Import optimized images
-const thumbValues = import.meta.glob('../images/thumbnails/*.JPG', { eager: true, import: 'default' });
-const largeValues = import.meta.glob('../images/large/*.JPG', { eager: true, import: 'default' });
+const thumbValues = import.meta.glob('../images/thumbnails/*.jpg', { eager: true, import: 'default' });
+const largeValues = import.meta.glob('../images/large/*.jpg', { eager: true, import: 'default' });
 
 // Helper to get image by name
 const getImage = (name, type = 'large') => {
@@ -39,7 +39,7 @@ const WEDDING_DETAILS = {
     brideDetailAddress: 'Rạp Kim Mâu, Năm Dân',
     brideAddress: 'Kim Sơn, Ninh Bình, Việt Nam',
     brideDescription: "Một tâm hồn tìm thấy phép màu từ những điều bình dị nhất, cô mang theo nụ cười rạng rỡ thắp sáng mọi ngày. Với Thủy, hạnh phúc không phải là đích đến, mà là niềm vui bình yên khi sẻ chia những khoảnh khắc ý nghĩa nhất của cuộc đời cùng người mình yêu.",
-    brideImage: getImage('HERO0164.JPG'), // Fallback to first image if specific one not found
+    brideImage: getImage('HERO0164'), // Fallback to first image if specific one not found
 
     groomName: 'Đức Linh',
     groomFatherName: 'Nguyễn Như Thơ',
@@ -47,13 +47,13 @@ const WEDDING_DETAILS = {
     groomDetailAddress: 'Số 7 Ngách 6 Ngõ 132 Đường Đinh Điền',
     groomAddress: 'Hoa Lư, Ninh Bình, Việt Nam',
     groomDescription: "Chân thành, ấm áp và luôn là chỗ dựa vững chắc của sự lạc quan. Với Linh, cuộc sống là một cuộc phiêu lưu tươi đẹp, và món quà lớn nhất là tìm được người bạn đời hoàn hảo để cùng viết nên chương mới tràn ngập tiếng cười, sự trưởng thành và tình yêu bất tận.",
-    groomImage: getImage('HERO0332.JPG'), // Fallback to first image if specific one not found
+    groomImage: getImage('HERO0332'), // Fallback to first image if specific one not found
 
     weddingDate: new Date('2026-01-12T09:00:00'),
     venue: 'Hoa Lư & Kim Sơn',
     location: 'Ninh Bình, Việt Nam',
-    heroImage: getImage('HERO9942.JPG'), // Fallback to first image if specific one not found
-    heroImageMobile: getImage('HERO0512.JPG'),
+    heroImage: getImage('HERO9942'), // Fallback to first image if specific one not found
+    heroImageMobile: getImage('HERO0512'),
 };
 
 const WEDDING_PHOTOS = Object.entries(largeValues).map(([path, full], index) => {

@@ -26,7 +26,7 @@ const CoupleProfile = ({ fatherName, motherName, address, name, role, image, des
                 className="relative group w-full max-w-[280px] sm:max-w-sm md:w-1/2"
             >
                 <div className="relative aspect-[3/4] overflow-hidden rounded-[1.5rem] md:rounded-[2rem] shadow-2xl">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-rose-50/20 to-transparent z-10" />
                     <img
                         src={image}
                         alt={name}
