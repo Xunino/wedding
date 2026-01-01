@@ -7,9 +7,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const APP_ROOT = __dirname;
-const ORIGINAL_DIR = path.join(APP_ROOT, 'images/original');
-const LARGE_DIR = path.join(APP_ROOT, 'images/large');
-const THUMB_DIR = path.join(APP_ROOT, 'images/thumbnails');
+const ORIGINAL_DIR = path.join(APP_ROOT, 'src/assets/images/original');
+const LARGE_DIR = path.join(APP_ROOT, 'src/assets/images/large');
+const THUMB_DIR = path.join(APP_ROOT, 'src/assets/images/thumbnails');
 
 if (!fs.existsSync(LARGE_DIR)) fs.mkdirSync(LARGE_DIR, { recursive: true });
 if (!fs.existsSync(THUMB_DIR)) fs.mkdirSync(THUMB_DIR, { recursive: true });

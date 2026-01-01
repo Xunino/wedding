@@ -17,8 +17,8 @@ import GrainOverlay from './components/GrainOverlay';
 
 
 // Import optimized images
-const thumbValues = import.meta.glob('../images/thumbnails/*.jpg', { eager: true, import: 'default' });
-const largeValues = import.meta.glob('../images/large/*.jpg', { eager: true, import: 'default' });
+const thumbValues = import.meta.glob('./assets/images/thumbnails/*.jpg', { eager: true, import: 'default' });
+const largeValues = import.meta.glob('./assets/images/large/*.jpg', { eager: true, import: 'default' });
 
 // Helper to get image by name
 const getImage = (name, type = 'large') => {

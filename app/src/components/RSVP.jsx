@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Send, Check, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
-import brideMap from '../../images/large/HERO0878.jpg';
+import brideMap from '../assets/images/large/HERO0878.jpg';
 
 // Initial wedding wishes
 const INITIAL_WISHES = [

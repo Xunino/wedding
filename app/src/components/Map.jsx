@@ -1,8 +1,8 @@
 import React from 'react';
 import { MapPin } from 'lucide-react';
 
-import groomMap from '../../images/maps/groom.png';
-import brideMap from '../../images/maps/image.png';
+import groomMap from '../assets/images/maps/groom.png';
+import brideMap from '../assets/images/maps/image.png';
 
 export default function Map({ weddingDetails }) {
     const locations = [
