@@ -4,14 +4,14 @@ import { Clock, Heart, Music, Utensils, Camera, Home, Sparkles, Gift, Users, Sta
 
 const SCHEDULE_DATA = {
     'jan10': {
-        title: 'Lễ Đính Hôn',
+        title: 'Lễ Ăn Hỏi',
         date: '10 Tháng 1, 2026',
-        description: 'Đính Hôn Truyền Thống',
+        description: 'Nghi Thức Truyền Thống',
         events: [
-            { time: '08:30 AM', title: 'Chuẩn Bị Sính Lễ', icon: Gift, description: 'Nhà trai chuẩn bị các mâm tráp sính lễ cẩn thận.' },
-            { time: '09:30 AM', title: 'Làm Lễ Chính Thức', icon: Heart, description: 'Nhà trai đến nhà gái để chính thức xin dâu.' },
-            { time: '10:30 AM', title: 'Dâng Hương Gia Tiên', icon: Home, description: 'Cặp đôi dâng hương lên bàn thờ tổ tiên.' },
-            { time: '11:30 AM', title: 'Tiệc Trà Thân Mật', icon: Utensils, description: 'Hai gia đình cùng dùng bữa cơm thân mật.' },
+            { time: '07:15 AM', title: 'Chuẩn Bị Sính Lễ', icon: Gift, description: 'Nhà trai chuẩn bị các mâm tráp sính lễ cẩn thận.' },
+            { time: '08:15 AM', title: 'Làm Lễ Chính Thức', icon: Heart, description: 'Nhà trai đến nhà gái để chính thức xin dâu.' },
+            { time: '08:30 AM', title: 'Dâng Hương Gia Tiên', icon: Home, description: 'Cặp đôi dâng hương lên bàn thờ tổ tiên.' },
+            { time: '09:00 AM', title: 'Đãi Tiệc', icon: Utensils, description: 'Hai gia đình cùng dùng bữa cơm thân mật.' },
         ]
     },
     'jan11': {
@@ -141,7 +141,7 @@ export default function Timeline() {
                         {/* Day Tabs */}
                         <div className="inline-flex flex-wrap justify-center gap-1.5 bg-white p-1 rounded-full shadow-md border border-gray-100 scale-90 md:scale-100">
                             {[
-                                { id: 'jan10', label: '10/01', sub: 'Đính Hôn' },
+                                { id: 'jan10', label: '10/01', sub: 'Lễ Ăn Hỏi' },
                                 { id: 'jan11', label: '11/01', sub: 'Tiệc Cưới' },
                                 { id: 'jan12', label: '12/01', sub: 'Thành Hôn' },
                             ].map((tab) => (
