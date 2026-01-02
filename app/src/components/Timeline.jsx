@@ -30,14 +30,16 @@ const SCHEDULE_DATA = {
         menu: [
             'Thịt Gà',
             'Thịt Dê Hấp',
-            'Tôm Chiên',
             'Thịt Lợn Chao',
+            'Tôm Chiên',
+            'Cá Tầm Chiên',
             'Bò Sốt Tiêu',
             'Xào Bò',
             'Nộm',
             'Rau Củ Luộc',
             'Xôi Đậu',
             'Canh Mọc',
+            'Tráng Miệng: Quýt',
         ]
     },
     'jan12': {
