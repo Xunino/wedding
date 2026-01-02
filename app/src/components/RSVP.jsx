@@ -4,6 +4,13 @@ import { Send, Check, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import brideMap from '../assets/images/large/HERO0878.jpg';
 
+// --- CẤU HÌNH GOOGLE FORM / GOOGLE FORM CONFIGURATION ---
+// Để liên kết với Google Sheets, hãy tạo Google Form và dán đường dẫn embed vào đây.
+// To link with Google Sheets, create a Google Form and paste the embed URL here.
+// Ví dụ/Example: "https://docs.google.com/forms/d/e/1FAIpQLSfD.../viewform?embedded=true"
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdsm6cKQkYtOp1JCYIiYCsn1Bc62nS3PaRAOUH6DMFDTs00Lg/viewform?usp=dialog";
+
+
 // Initial wedding wishes
 const INITIAL_WISHES = [
     "Trăm Năm Hạnh Phúc", "Hạnh Phúc Mãi Mãi", "Bên Nhau Trọn Đời", "Vĩnh Kết Đồng Tâm",
@@ -248,9 +255,31 @@ export default function RSVP() {
                             </div>
                             <h2 className="text-3xl md:text-5xl font-serif text-gray-800 mb-1 md:mb-2">Xác Nhận Tham Dự</h2>
                             <p className="text-gray-500 text-xs md:text-sm font-light">Sự hiện diện của bạn là niềm vinh hạnh của chúng tôi.<br />Xin vui lòng xác nhận bên dưới.</p>
+
+                            {/* Instruction hint for developer/user */}
+                            {!GOOGLE_FORM_URL && (
+                                <p className="text-[10px] text-gray-300 mt-2 italic">
+                                    (Chế độ Local: Dữ liệu chỉ lưu trên máy này. Để liên kết Google Sheet, hãy cập nhật biến GOOGLE_FORM_URL trong file code)
+                                </p>
+                            )}
                         </div>
 
-                        {isSubmitted ? (
+                        {GOOGLE_FORM_URL ? (
+                            <div className="w-full h-full min-h-[600px] bg-white rounded-xl overflow-hidden">
+                                <iframe
+                                    src={GOOGLE_FORM_URL}
+                                    width="100%"
+                                    height="100%"
+                                    frameBorder="0"
+                                    marginHeight="0"
+                                    marginWidth="0"
+                                    className="w-full h-full min-h-[600px]"
+                                    title="RSVP Form"
+                                >
+                                    Đang tải biểu mẫu...
+                                </iframe>
+                            </div>
+                        ) : isSubmitted ? (
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
