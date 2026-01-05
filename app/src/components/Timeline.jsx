@@ -29,7 +29,7 @@ const SCHEDULE_DATA = {
         description: 'Lễ Cưới Chính Thức',
         events: [
             { time: '07:00 AM', title: 'Lên Đường Đón Dâu', icon: Home, description: 'Phái đoàn nhà trai xuất phát đi đón dâu.' },
-            { time: '08:00 AM', title: 'Lễ Tại Nhà Gái', icon: Heart, description: 'Làm lễ xin dâu và nghi thức truyền thống.' },
+            { time: '08:00 AM', title: 'Lễ Vu Quy', icon: Heart, description: 'Làm lễ xin dâu và nghi thức truyền thống.' },
             { time: '08:30 AM', title: 'Rước Dâu Về Nhà Trai', icon: Utensils, description: 'Đưa cô dâu về ra mắt gia tiên nhà chồng.' },
             { time: '09:30 AM', title: 'Lễ Thành Hôn', icon: Sparkles, description: 'Hoàn thành các nghi lễ, cảm ơn quan khách.' },
         ]
