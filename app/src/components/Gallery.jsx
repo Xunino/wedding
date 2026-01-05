@@ -90,7 +90,7 @@ export default function Gallery({ photos }) {
                                 <img
                                     src={photo.thumb}
                                     alt={photo.title}
-                                    className="w-full h-full object-cover transition-transform duration-700 md:group-hover:scale-110"
+                                    className="w-full h-full object-cover object-top transition-transform duration-700 md:group-hover:scale-110"
                                     loading="lazy"
                                 />
                                 <div className="absolute inset-0 bg-black/40 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
