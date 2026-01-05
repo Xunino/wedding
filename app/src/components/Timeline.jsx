@@ -27,17 +27,11 @@ const SCHEDULE_DATA = {
         title: 'Lễ Thành Hôn',
         date: '12 Tháng 1, 2026',
         description: 'Lễ Cưới Chính Thức',
-        hasSides: true,
-        groomEvents: [
+        events: [
             { time: '07:00 AM', title: 'Lên Đường Đón Dâu', icon: Home, description: 'Phái đoàn nhà trai xuất phát đi đón dâu.' },
             { time: '08:00 AM', title: 'Lễ Tại Nhà Gái', icon: Heart, description: 'Làm lễ xin dâu và nghi thức truyền thống.' },
             { time: '08:30 AM', title: 'Rước Dâu Về Nhà Trai', icon: Utensils, description: 'Đưa cô dâu về ra mắt gia tiên nhà chồng.' },
             { time: '09:30 AM', title: 'Lễ Thành Hôn', icon: Sparkles, description: 'Hoàn thành các nghi lễ, cảm ơn quan khách.' },
-        ],
-        brideEvents: [
-            { time: '07:30 AM', title: 'Đón Tiếp Nhà Trai', icon: Users, description: 'Nhà gái hân hoan đón tiếp đoàn nhà trai.' },
-            { time: '08:30 AM', title: 'Lễ Vu Quy', icon: Heart, description: 'Làm lễ gia tiên và trao nhẫn tại nhà gái.' },
-            { time: '09:30 AM', title: 'Tiệc Trà Chỉ Dẫn', icon: Utensils, description: 'Mời trầu cau và bánh kẹo trước khi đưa dâu.' },
         ]
     }
 };
@@ -92,12 +86,7 @@ const TimelineItem = ({ event, index, isEven }) => {
 
 export default function Timeline() {
     const [activeTab, setActiveTab] = useState('jan12');
-    const [weddingSide, setWeddingSide] = useState('groom');
-
-    const currentData = SCHEDULE_DATA[activeTab];
-    const events = activeTab === 'jan12'
-        ? (weddingSide === 'groom' ? currentData.groomEvents : currentData.brideEvents)
-        : currentData.events;
+    const events = SCHEDULE_DATA[activeTab].events;
 
     return (
         <section id="timeline" className="py-12 md:py-20 bg-stone-50 overflow-hidden relative">
@@ -146,29 +135,7 @@ export default function Timeline() {
                     </motion.div>
                 </div>
 
-                {/* Sub-tabs for Wedding Day */}
-                {activeTab === 'jan12' && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="flex justify-center mb-8 md:mb-12"
-                    >
-                        <div className="bg-white/80 p-0.5 rounded-lg shadow-sm border border-rose-100 flex gap-0.5 scale-90 md:scale-100">
-                            {['groom', 'bride'].map((side) => (
-                                <button
-                                    key={side}
-                                    onClick={() => setWeddingSide(side)}
-                                    className={`px-4 py-1.5 rounded-md text-xs font-medium transition-all ${weddingSide === side
-                                        ? 'bg-rose-100 text-rose-700 shadow-sm'
-                                        : 'text-gray-500 hover:bg-rose-50'
-                                        }`}
-                                >
-                                    {side === 'groom' ? 'Nhà Trai' : 'Nhà Gái'}
-                                </button>
-                            ))}
-                        </div>
-                    </motion.div>
-                )}
+
 
                 {/* Vertical Timeline */}
                 <div className="relative">
@@ -178,7 +145,7 @@ export default function Timeline() {
                     <div className="space-y-4">
                         <AnimatePresence mode="wait">
                             <motion.div
-                                key={`${activeTab}-${weddingSide}`}
+                                key={activeTab}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
